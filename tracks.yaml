@@ -12,7 +12,7 @@ tracks:
       :{release_inc}
     devel_branch: null
     name: upstream
-    patches: null
+    patches: indigo
     release_inc: -1
     release_repo_url: null
     release_tag: null
