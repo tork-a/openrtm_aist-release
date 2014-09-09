@@ -1,0 +1,37 @@
+From d4a7ecc8c7dc61f585222b7ee2afb5d31a0ae3e0 Mon Sep 17 00:00:00 2001
+From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
+Date: Tue, 9 Sep 2014 23:52:38 +0900
+Subject: [PATCH 2/2] Added Manager.cpp.patch
+
+---
+ src/lib/rtm/Manager.cpp       |    1 +
+ src/lib/rtm/ManagerConfig.cpp |    1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/src/lib/rtm/Manager.cpp b/src/lib/rtm/Manager.cpp
+index d2d3e25..70fc816 100644
+--- a/src/lib/rtm/Manager.cpp
++++ b/src/lib/rtm/Manager.cpp
+@@ -1661,6 +1661,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
+     std::string name_conf(category + "." + inst_name + ".config_file");
+     
+     
++    coil::vstring config_fname;
+     coil::Properties type_prop, name_prop;
+     
+     // Load "category.instance_name.config_file"
+diff --git a/src/lib/rtm/ManagerConfig.cpp b/src/lib/rtm/ManagerConfig.cpp
+index 398c335..1bad1cb 100644
+--- a/src/lib/rtm/ManagerConfig.cpp
++++ b/src/lib/rtm/ManagerConfig.cpp
+@@ -114,6 +114,7 @@ namespace RTC
+ 
+     // Properties from arguments are marged finally
+     prop << m_argprop;
++    prop["config_file"] = m_configFile;
+   }
+   
+   /*!
+-- 
+1.7.9.5
+
