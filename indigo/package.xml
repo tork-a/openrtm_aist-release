@@ -17,12 +17,13 @@
   <url type="repository">https://github.com/start-jsk/openrtm_aist_core</url>
   <url type="bugtracker">https://github.com/start-jsk/openrtm_aist_core/issues</url>
 
+  <buildtool_depend>cmake</buildtool_depend>
+
   <build_depend>uuid</build_depend>
   <build_depend>omniorb</build_depend>
 
   <run_depend>uuid</run_depend>
   <run_depend>omniorb</run_depend>
-  <run_depend>catkin</run_depend>
 
   <export>
     <build_type>cmake</build_type>
