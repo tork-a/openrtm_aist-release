@@ -19,6 +19,7 @@
 
   <buildtool_depend>automake</buildtool_depend>
   <buildtool_depend>cmake</buildtool_depend>
+  <buildtool_depend>pkg-config</buildtool_depend>
 
   <build_depend>uuid</build_depend>
   <build_depend>omniorb</build_depend>
