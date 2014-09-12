@@ -17,6 +17,7 @@
   <url type="repository">https://github.com/start-jsk/openrtm_aist_core</url>
   <url type="bugtracker">https://github.com/start-jsk/openrtm_aist_core/issues</url>
 
+  <buildtool_depend>automake</buildtool_depend>
   <buildtool_depend>cmake</buildtool_depend>
 
   <build_depend>uuid</build_depend>
