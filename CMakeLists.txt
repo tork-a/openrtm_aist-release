@@ -1,7 +1,6 @@
 
 add_custom_target(compile_openrtm_aist ALL
-  COMMAND autoconf
-  COMMAND automake
+  COMMAND ./build/autogen
   COMMAND ./configure --prefix=${CMAKE_INSTALL_PREFIX}
   COMMAND make
   COMMAND make install
