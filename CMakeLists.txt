@@ -3,7 +3,7 @@ add_custom_target(compile_openrtm_aist ALL
   COMMAND ./build/autogen
   COMMAND ./configure --prefix=${CMAKE_INSTALL_PREFIX}
   COMMAND make
-  COMMAND make install DESTDIR=$ENV{ROS_DESTDIR}
+  COMMAND make install DESTDIR=${ROS_DESTDIR}
   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
 install(FILES package.xml DESTINATION share/openrtm_aist/)
