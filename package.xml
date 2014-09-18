@@ -18,6 +18,7 @@
   <url type="bugtracker">https://github.com/start-jsk/openrtm_aist_core/issues</url>
 
   <buildtool_depend>automake</buildtool_depend>
+  <buildtool_depend>libtool</buildtool_depend>
   <buildtool_depend>cmake</buildtool_depend>
   <buildtool_depend>pkg-config</buildtool_depend>
 
