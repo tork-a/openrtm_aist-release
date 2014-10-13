@@ -1,11 +1,11 @@
-From 39b32f21a3acd41f14f4922a500b4445e1f0df37 Mon Sep 17 00:00:00 2001
+From e747c833625e9ec4197a0dd159e571da02a41eaa Mon Sep 17 00:00:00 2001
 From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
 Date: Tue, 9 Sep 2014 23:52:38 +0900
 Subject: [PATCH 2/2] Added Manager.cpp.patch
 
 ---
- src/lib/rtm/Manager.cpp       |    1 +
- src/lib/rtm/ManagerConfig.cpp |    1 +
+ src/lib/rtm/Manager.cpp       | 1 +
+ src/lib/rtm/ManagerConfig.cpp | 1 +
  2 files changed, 2 insertions(+)
 
 diff --git a/src/lib/rtm/Manager.cpp b/src/lib/rtm/Manager.cpp
@@ -33,5 +33,5 @@ index 398c335..1bad1cb 100644
    
    /*!
 -- 
-1.7.9.5
+1.9.1
 

@@ -1,12 +1,12 @@
-From 00ab79bc5cba4708e10ecb4082fe255dd7a5ceba Mon Sep 17 00:00:00 2001
+From bbfd50cbe2ac2bec8fefceae9251e6483f3e1d29 Mon Sep 17 00:00:00 2001
 From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
 Date: Tue, 9 Sep 2014 23:51:16 +0900
 Subject: [PATCH 1/2] Added ArtEC-1.1.0.patch
 
 ---
- src/ext/ec/artlinux/ArtExecutionContext.cpp |   13 +++++++++++--
- src/ext/ec/artlinux/ArtExecutionContext.h   |   16 ++++++++++++++++
- src/ext/ec/artlinux/Makefile.am             |    2 +-
+ src/ext/ec/artlinux/ArtExecutionContext.cpp | 13 +++++++++++--
+ src/ext/ec/artlinux/ArtExecutionContext.h   | 16 ++++++++++++++++
+ src/ext/ec/artlinux/Makefile.am             |  2 +-
  3 files changed, 28 insertions(+), 3 deletions(-)
 
 diff --git a/src/ext/ec/artlinux/ArtExecutionContext.cpp b/src/ext/ec/artlinux/ArtExecutionContext.cpp
@@ -82,5 +82,5 @@ index d70a5f7..aaf6ca3 100644
  ArtExecutionContext_la_LIBADD  = $(top_builddir)/src/lib/rtm/libRTC.la
  
 -- 
-1.7.9.5
+1.9.1
 
