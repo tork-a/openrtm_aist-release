@@ -31,9 +31,9 @@ add_custom_target(install_openrtm_aist
 # This install CODE will trigger the target install_openrtm_aist
 install(CODE "execute_process(COMMAND \"${CMAKE_COMMAND}\" --build \"${CMAKE_BINARY_DIR}\" --target install_openrtm_aist)")
 install(FILES package.xml DESTINATION share/openrtm_aist/)
-install(CODE "execute_process(COMMAND cmake -E make_directory \"${CMAKE_INSTALL_PREFIX}\"/lib/openrtm_aist/bin  WORKING_DIRECTORY \"${PROJECT_SOURCE_DIR}\")")
+install(CODE "execute_process(COMMAND cmake -E make_directory \${CMAKE_INSTALL_PREFIX}/lib/openrtm_aist/bin  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})")
 foreach(target rtm-config rtm-naming rtm-skelwrapper rtc-template coil-config rtcd rtcprof)
-  install(CODE "execute_process(COMMAND cmake -E create_symlink ../../../bin/${target} ${target} WORKING_DIRECTORY \"${PROJECT_SOURCE_DIR}\"/\"${CMAKE_INSTALL_PREFIX}\"/lib/openrtm_aist/bin)")
+  install(CODE "execute_process(COMMAND cmake -E create_symlink ../../../bin/${target} ${target} WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/\${CMAKE_INSTALL_PREFIX}/lib/openrtm_aist/bin)")
 endforeach()
 
 
