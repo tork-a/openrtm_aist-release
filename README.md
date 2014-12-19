@@ -1,3 +1,24 @@
+## openrtm_aist (indigo) - 1.1.0-24
+
+The packages in the `openrtm_aist` repository were released into the `indigo` distro by running `/usr/bin/bloom-release --track indigo --rosdistro indigo openrtm_aist` on `Fri, 19 Dec 2014 07:21:14 -0000`
+
+The `openrtm_aist` package was released.
+
+Version of package(s) in repository `openrtm_aist`:
+- upstream repository: http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_0/OpenRTM-aist/
+- release repository: https://github.com/tork-a/openrtm_aist-release.git
+- rosdistro version: `1.1.0-23`
+- old version: `1.1.0-23`
+- new version: `1.1.0-24`
+
+Versions of tools used:
+- bloom version: `0.5.16`
+- catkin_pkg version: `0.2.6`
+- rosdep version: `0.10.33`
+- rosdistro version: `0.4.0`
+- vcstools version: `0.1.35`
+
+
 ## openrtm_aist (indigo) - 1.1.0-23
 
 The packages in the `openrtm_aist` repository were released into the `indigo` distro by running `/usr/bin/bloom-release openrtm_aist --rosdistro indigo --track indigo` on `Tue, 21 Oct 2014 02:12:59 -0000`
