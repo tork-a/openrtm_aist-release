@@ -1,7 +1,7 @@
-From 391a8d68d74465555c08de1b24f321505c83dc69 Mon Sep 17 00:00:00 2001
+From a11f5a619044a914bf78c1e9743ac93bcdd1bea8 Mon Sep 17 00:00:00 2001
 From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
 Date: Tue, 9 Sep 2014 23:52:38 +0900
-Subject: [PATCH 2/2] Added Manager.cpp.patch
+Subject: [PATCH 2/3] Added Manager.cpp.patch
 
 ---
  src/lib/rtm/Manager.cpp       | 1 +
