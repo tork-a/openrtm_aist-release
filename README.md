@@ -1,3 +1,24 @@
+## openrtm_aist (hydro) - 1.1.0-2
+
+The packages in the `openrtm_aist` repository were released into the `hydro` distro by running `/usr/bin/bloom-release openrtm_aist --track hydro -r hydro --new-track` on `Tue, 10 Feb 2015 12:10:08 -0000`
+
+The `openrtm_aist` package was released.
+
+Version of package(s) in repository `openrtm_aist`:
+- upstream repository: http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_0/OpenRTM-aist/
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `1.1.0-1`
+- new version: `1.1.0-2`
+
+Versions of tools used:
+- bloom version: `0.5.18`
+- catkin_pkg version: `0.2.2`
+- rosdep version: `0.10.33`
+- rosdistro version: `0.4.0`
+- vcstools version: `0.1.33`
+
+
 ## openrtm_aist (hydro) - 1.1.0-1
 
 The packages in the `openrtm_aist` repository were released into the `hydro` distro by running `/usr/bin/bloom-release openrtm_aist --track hydro -r hydro --new-track` on `Tue, 10 Feb 2015 10:31:36 -0000`
