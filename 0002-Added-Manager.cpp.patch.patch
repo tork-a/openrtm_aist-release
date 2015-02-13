@@ -1,4 +1,4 @@
-From a11f5a619044a914bf78c1e9743ac93bcdd1bea8 Mon Sep 17 00:00:00 2001
+From 5cab9307dcb9ec0b8033a820e958d0a63a778ca9 Mon Sep 17 00:00:00 2001
 From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
 Date: Tue, 9 Sep 2014 23:52:38 +0900
 Subject: [PATCH 2/3] Added Manager.cpp.patch
