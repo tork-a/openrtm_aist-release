@@ -35,5 +35,8 @@ install(CODE "execute_process(COMMAND cmake -E make_directory \$ENV{DESTDIR}\${C
 foreach(target rtm-config rtm-naming rtm-skelwrapper rtc-template coil-config rtcd rtcprof)
   install(CODE "execute_process(COMMAND cmake -E create_symlink ../../../bin/${target} ${target} WORKING_DIRECTORY \$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/lib/openrtm_aist/bin)")
 endforeach()
+foreach(target SeqInComp SeqOutComp MyServiceConsumerComp MyServiceProviderComp)
+  install(CODE "execute_process(COMMAND cmake -E create_symlink ../../../share/openrtm-1.1/example/${target} ${target} WORKING_DIRECTORY \$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/lib/openrtm_aist/bin)")
+endforeach()
 
 
