@@ -1,3 +1,24 @@
+## openrtm_aist (jade) - 1.1.0-0
+
+The packages in the `openrtm_aist` repository were released into the `jade` distro by running `/usr/bin/bloom-release openrtm_aist -t jade -r jade` on `Wed, 22 Apr 2015 07:17:40 -0000`
+
+The `openrtm_aist` package was released.
+
+Version of package(s) in repository `openrtm_aist`:
+- upstream repository: http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_0/OpenRTM-aist/
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `1.1.0-0`
+
+Versions of tools used:
+- bloom version: `0.5.19`
+- catkin_pkg version: `0.2.6`
+- rosdep version: `0.11.2`
+- rosdistro version: `0.4.0`
+- vcstools version: `0.1.36`
+
+
 ## openrtm_aist (hydro) - 1.1.0-13
 
 The packages in the `openrtm_aist` repository were released into the `hydro` distro by running `/usr/bin/bloom-release openrtm_aist --track hydro -r hydro` on `Fri, 13 Feb 2015 12:29:31 -0000`
