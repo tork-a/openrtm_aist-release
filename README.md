@@ -1,3 +1,26 @@
+## openrtm_aist (kinetic) - 1.1.0-0
+
+The packages in the `openrtm_aist` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release openrtm_aist -t kinetic -r kinetic` on `Wed, 20 Apr 2016 07:23:29 -0000`
+
+The `openrtm_aist` package was released.
+
+Version of package(s) in repository `openrtm_aist`:
+
+- upstream repository: http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_0/OpenRTM-aist/
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `1.1.0-0`
+
+Versions of tools used:
+
+- bloom version: `0.5.21`
+- catkin_pkg version: `0.2.10`
+- rosdep version: `0.11.4`
+- rosdistro version: `0.4.4`
+- vcstools version: `0.1.38`
+
+
 ## openrtm_aist (jade) - 1.1.0-1
 
 The packages in the `openrtm_aist` repository were released into the `jade` distro by running `/usr/bin/bloom-release openrtm_aist --track jade --rosdistro jade` on `Sat, 25 Apr 2015 16:04:53 -0000`
