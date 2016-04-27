@@ -1,4 +1,4 @@
-From 2e634c0f5d751bfdd91ed728a4216eb9774b4ceb Mon Sep 17 00:00:00 2001
+From 49a190634efc2ee27bc1cabba4de50991ac7aa2b Mon Sep 17 00:00:00 2001
 From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
 Date: Tue, 9 Sep 2014 23:52:38 +0900
 Subject: [PATCH 2/3] Added Manager.cpp.patch
@@ -9,10 +9,10 @@ Subject: [PATCH 2/3] Added Manager.cpp.patch
  2 files changed, 2 insertions(+)
 
 diff --git a/src/lib/rtm/Manager.cpp b/src/lib/rtm/Manager.cpp
-index d2d3e25..70fc816 100644
+index a02e60b..0c287d0 100644
 --- a/src/lib/rtm/Manager.cpp
 +++ b/src/lib/rtm/Manager.cpp
-@@ -1661,6 +1661,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
+@@ -1665,6 +1665,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
      std::string name_conf(category + "." + inst_name + ".config_file");
      
      
