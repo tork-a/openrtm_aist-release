@@ -10,7 +10,7 @@ dnl generate the file "configure", which tries to guess your system
 dnl configuration
 dnl
 dnl
-dnl $Id: configure.ac 2333 2012-02-22 08:26:23Z n-ando $
+dnl $Id: configure.ac 2607 2015-04-30 06:40:25Z n-ando $
 dnl
 
 dnl ------------------------------------------------------------
@@ -1075,10 +1075,20 @@ if test "x$have_omniorb" = "xyes" ; then
 	case $omniorb_version in
 	4.0.*)
 		AC_MSG_RESULT(CORBA C++ mapping ver1.0 is used.)
+		AC_DEFINE([RTM_OMNIORB_40], [TRUE], [omniORB version is 4.0])
+		AC_MSG_RESULT(omniORB version is 4.0.)
 		;;
 	4.1|4.1.*)
 		AC_DEFINE([RTC_CORBA_CXXMAPPING11], [TRUE], [CORBA C++ mapping is ver1.1])
 		AC_MSG_RESULT(CORBA C++ mapping ver1.1 is used.)
+		AC_DEFINE([RTM_OMNIORB_41], [TRUE], [omniORB version is 4.1])
+		AC_MSG_RESULT(omniORB version is 4.1.)
+		;;
+	4.2|4.2.*)
+		AC_DEFINE([RTC_CORBA_CXXMAPPING11], [TRUE], [CORBA C++ mapping is ver1.1])
+		AC_MSG_RESULT(CORBA C++ mapping ver1.1 is used.)
+		AC_DEFINE([RTM_OMNIORB_42], [TRUE], [omniORB version is 4.2])
+		AC_MSG_RESULT(omniORB version is 4.2.)
 		;;
 	esac
 	AC_MSG_RESULT($omnirob_version)
