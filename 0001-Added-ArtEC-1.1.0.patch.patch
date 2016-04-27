@@ -1,0 +1,86 @@
+From 3d7f1166353150ebfe8cafcff85ad9fb35a3b634 Mon Sep 17 00:00:00 2001
+From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
+Date: Tue, 9 Sep 2014 23:51:16 +0900
+Subject: [PATCH 1/3] Added ArtEC-1.1.0.patch
+
+---
+ src/ext/ec/artlinux/ArtExecutionContext.cpp | 13 +++++++++++--
+ src/ext/ec/artlinux/ArtExecutionContext.h   | 16 ++++++++++++++++
+ src/ext/ec/artlinux/Makefile.am             |  2 +-
+ 3 files changed, 28 insertions(+), 3 deletions(-)
+
+diff --git a/src/ext/ec/artlinux/ArtExecutionContext.cpp b/src/ext/ec/artlinux/ArtExecutionContext.cpp
+index e4cae7c..5972d8c 100644
+--- a/src/ext/ec/artlinux/ArtExecutionContext.cpp
++++ b/src/ext/ec/artlinux/ArtExecutionContext.cpp
+@@ -29,8 +29,17 @@
+ namespace RTC
+ {
+   ArtExecutionContext::ArtExecutionContext()
+-    : PeriodicExecutionContext()
++    : PeriodicExecutionContext(),
++      m_priority(ART_PRIO_MAX-1)
+   {
++      rtclog.setName("ArtEC");
++      coil::Properties& prop(Manager::instance().getConfig());
++
++      // Priority
++      getProperty(prop, "exec_cxt.periodic.priority", m_priority);
++      getProperty(prop, "exec_cxt.periodic.art.priority", m_priority);
++      RTC_DEBUG(("Priority: %d", m_priority));
++
+   }
+ 
+   ArtExecutionContext::~ArtExecutionContext()
+@@ -41,7 +50,7 @@ namespace RTC
+   int ArtExecutionContext::svc(void)
+   {
+     int usec(m_period.sec() * 1000000 + m_period.usec());
+-    if (art_enter(ART_PRIO_MAX-1, ART_TASK_PERIODIC, usec) == -1)
++    if (art_enter(m_priority, ART_TASK_PERIODIC, usec) == -1)
+       {
+ 	std::cerr << "fatal error: art_enter" << std::endl;
+       }
+diff --git a/src/ext/ec/artlinux/ArtExecutionContext.h b/src/ext/ec/artlinux/ArtExecutionContext.h
+index 66891b3..477ddf2 100644
+--- a/src/ext/ec/artlinux/ArtExecutionContext.h
++++ b/src/ext/ec/artlinux/ArtExecutionContext.h
+@@ -38,6 +38,22 @@ namespace RTC
+     ArtExecutionContext();
+     virtual ~ArtExecutionContext();
+     virtual int svc(void);
++
++    template <class T>
++    void getProperty(coil::Properties& prop, const char* key, T& value)
++    {
++    if (prop.findNode(key) != 0)
++      {
++        T tmp;
++        if (coil::stringTo(tmp, prop[key].c_str()))
++          {
++            value = tmp;
++          }
++      }
++    }
++
++  private:
++      int m_priority;
+   };
+ };
+ 
+diff --git a/src/ext/ec/artlinux/Makefile.am b/src/ext/ec/artlinux/Makefile.am
+index d70a5f7..aaf6ca3 100644
+--- a/src/ext/ec/artlinux/Makefile.am
++++ b/src/ext/ec/artlinux/Makefile.am
+@@ -19,7 +19,7 @@ moduledir = $(rtm_ecdir)
+ module_LTLIBRARIES = ArtExecutionContext.la
+ 
+ ArtExecutionContext_la_SOURCES = ArtExecutionContext.cpp ArtExecutionContext.h
+-ArtExecutionContext_la_LDFLAGS = -module -shared
++ArtExecutionContext_la_LDFLAGS = -module -shared $(ARTLIB)
+ ArtExecutionContext_la_FLAGS   = -L$(top_builddir)/src/lib/rtm/.lib
+ ArtExecutionContext_la_LIBADD  = $(top_builddir)/src/lib/rtm/libRTC.la
+ 
+-- 
+1.9.1
+
