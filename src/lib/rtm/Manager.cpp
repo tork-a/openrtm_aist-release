@@ -12,7 +12,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: Manager.cpp 2209 2011-07-27 14:02:57Z n-ando $
+ * $Id: Manager.cpp 2607 2015-04-30 06:40:25Z n-ando $
  *
  */
 
@@ -1113,7 +1113,11 @@ std::vector<coil::Properties> Manager::getLoadableModules()
                     CORBA::UShort port; 
                     coil::stringTo(port, addr_port[1].c_str());
                     iiop_addr.port = port;
+#if defined(RTM_OMNIORB_40) || defined(RTM_OMNIORB_41)
                     omniIOR::add_IIOP_ADDRESS(iiop_addr);
+#else
+                    omniIOR::add_IIOP_ADDRESS(iiop_addr, 0);
+#endif // defined(RTC_OMNIORB_40) and defined(RTC_OMNIORB_41)
                   }
               }
           }
@@ -1661,6 +1665,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
     std::string name_conf(category + "." + inst_name + ".config_file");
     
     
+    coil::vstring config_fname;
     coil::Properties type_prop, name_prop;
     
     // Load "category.instance_name.config_file"
