@@ -1,3 +1,26 @@
+## openrtm_aist (melodic) - 1.1.2-1
+
+The packages in the `openrtm_aist` repository were released into the `melodic` distro by running `/usr/bin/bloom-release -y openrtm_aist --rosdistro melodic --track melodic` on `Wed, 05 Sep 2018 09:28:56 -0000`
+
+The `openrtm_aist` package was released.
+
+Version of package(s) in repository `openrtm_aist`:
+
+- upstream repository: http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_2/OpenRTM-aist/
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `1.1.2-0`
+- new version: `1.1.2-1`
+
+Versions of tools used:
+
+- bloom version: `0.6.6`
+- catkin_pkg version: `0.4.6`
+- rosdep version: `0.12.2`
+- rosdistro version: `0.6.8`
+- vcstools version: `0.1.40`
+
+
 ## openrtm_aist (melodic) - 1.1.2-0
 
 The packages in the `openrtm_aist` repository were released into the `melodic` distro by running `/usr/bin/bloom-release -y openrtm_aist --rosdistro melodic --track melodic` on `Wed, 05 Sep 2018 08:17:54 -0000`
