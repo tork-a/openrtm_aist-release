@@ -14,7 +14,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: RingBufferTests.cpp 2015 2010-12-29 11:33:33Z n-ando $
+ * $Id: RingBufferTests.cpp 2540 2014-03-29 08:09:18Z n-ando $
  *
  */
 
@@ -49,9 +49,15 @@
 
 #include <string>
 #include <sstream>
+#include <unistd.h>
 #include <rtm/RingBuffer.h>
 
 //#define DEBUG
+
+#ifdef __QNX__
+using std::abort;
+using std::perror;
+#endif
 
 static const int NLOOP = 0x00000fff;	// 読み書きのループ回数
 typedef ::RTC::BufferStatus::Enum ReturnCode;

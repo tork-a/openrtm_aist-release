@@ -2,7 +2,7 @@
 ##---------------------------------------------------------------------------
 ## Makefile for rtm-config: rtm configuration information viewer
 ##
-## $Id: Makefile.am 2518 2014-03-03 06:59:38Z n-ando $
+## $Id: Makefile.am 2517 2014-03-03 06:57:40Z n-ando $
 ##---------------------------------------------------------------------------
 
 AUTOMAKE_OPTIONS = 1.4

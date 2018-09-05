@@ -46,9 +46,6 @@ template="""
 #
 # OpenRTM-aist specific directory
 # - COIL_INCLUDE_DIR: coil include dir
-# - OPENRTM_INCLUDE_DIR: OpenRTM's include directory
-# - OPENRTM_LIB_DIR: OpenRTM's lib directory
-# - OPENRTM_DATA_DIR: OpenRTM's shared directory
 #
 # OpenRTM-aist version
 # - OPENRTM_VERSION: x.y.z version
@@ -67,18 +64,19 @@ template="""
 message(STATUS "OpenRTMConfig.cmake found.")
 message(STATUS "Configrued by configuration mode.")
 
+# OpenRTM-aist version
+set(OPENRTM_VERSION [openrtm_version])
+set(OPENRTM_VERSION_MAJOR [openrtm_version_major])
+set(OPENRTM_VERSION_MINOR [openrtm_version_minor])
+set(OPENRTM_VERSION_PATCH [openrtm_version_patch])
+set(OPENRTM_SHORT_VERSION [openrtm_short_version])
+
 string(REPLACE "\\\\" "/" OMNIORB_DIR "$ENV{OMNI_ROOT}")
 string(REPLACE "\\\\" "/" OPENRTM_DIR "$ENV{RTM_ROOT}")
 string(REGEX REPLACE "/$" "" OMNIORB_DIR "${OMNIORB_DIR}")
 string(REGEX REPLACE "/$" "" OPENRTM_DIR "${OPENRTM_DIR}")
 
 # omniORB options
-file(GLOB _vers RELATIVE "${OMNIORB_DIR}" "${OMNIORB_DIR}/THIS_IS_OMNIORB*")
-if("${_vers}" STREQUAL "")
-  message(FATAL_ERROR "omniORB version file not found.")
-endif()
-string(REGEX REPLACE "[[]^0-9]+([[]0-9]+)_([[]0-9]+)_([[]0-9]+)"
-  "\\\\1.\\\\2.\\\\3" OMNIORB_VERSION "${_vers}")
 set(OMNIORB_CFLAGS [omniorb_cflags])
 set(OMNIORB_INCLUDE_DIRS [omniorb_include_dirs])
 set(OMNIORB_LDFLAGS [omniorb_ldflags])
@@ -89,21 +87,22 @@ set(OMNIORB_LIBRARIES [omniorb_libraries])
 set(OPENRTM_CFLAGS [openrtm_cflags])
 set(OPENRTM_INCLUDE_DIRS [openrtm_include_dirs])
 set(OPENRTM_LDFLAGS [openrtm_ldflags])
+
+get_filename_component(OpenRTM_CONFIG2_PATH "${CMAKE_CURRENT_LIST_FILE}" PATH CACHE)
+set(OPENRTM_BIN_PATH "${OPENRTM_DIR}/bin")
+file(GLOB rtm_libs "${OpenRTM_CONFIG2_PATH}/RTC*.lib")
+foreach(rtm_lib ${rtm_libs})
+  if(EXISTS "${rtm_lib}")
+    set(OPENRTM_BIN_PATH ${OpenRTM_CONFIG2_PATH})
+  endif()
+endforeach()
+message(STATUS "OPENRTM_BIN_PATH=${OPENRTM_BIN_PATH}")
+
 set(OPENRTM_LIBRARY_DIRS [openrtm_lib_dirs])
 set(OPENRTM_LIBRARIES [openrtm_libs])
 
 # OpenRTM-aist specific directory
 set(COIL_INCLUDE_DIR [coil_include_dir])
-set(OPENRTM_INCLUDE_DIR [openrtm_include_dir])
-set(OPENRTM_LIB_DIR [openrtm_libdir])
-set(OPENRTM_DATA_DIR [openrtm_data_dir])
-
-# OpenRTM-aist version
-set(OPENRTM_VERSION [openrtm_version])
-set(OPENRTM_VERSION_MAJOR [openrtm_version_major])
-set(OPENRTM_VERSION_MINOR [openrtm_version_minor])
-set(OPENRTM_VERSION_PATCH [openrtm_version_patch])
-set(OPENRTM_SHORT_VERSION [openrtm_short_version])
 
 # OpenRTM-aist's CORBA related settings
 set(OPENRTM_ORB [openrtm_orb])
@@ -153,6 +152,7 @@ def process_lib(libs, type):
 
 
 if __name__ == '__main__':
+    import os
     if len(sys.argv) < 2:
         print "please specify vsprops file"
         sys.exit(1)
@@ -176,6 +176,24 @@ if __name__ == '__main__':
         value = value.replace("\\", "/")
         value = value.replace("\"", "")
         value = re.sub("(SolutionDir)", "%RTM_ROOT%", value)
+        envs = [
+            "COIL_DLLVER",
+            "COIL_VERSION",
+            "COIL_SHORTVER",
+            "COIL_DLL_SHORTVER",
+            "RTM_DLLVER",
+            "RTM_VERSION",
+            "RTM_SHORTVER",
+            "RTM_DLL_SHORTVER",
+            "OMNI_DLLVER",
+            "OMNI_VERSION",
+            "OMNI_SHORTVER",
+            "OMNITHREAD_DLLVER",
+            "OMNITHREAD_VERSION",
+            ]
+        for env_str in envs:
+            env_var = "%" + env_str + "%"
+            value = re.sub(env_var, os.environ[env_str], value)
         dict[name] = value
     dict["user_lib"] = ""
     dict["user_libd"] = ""
@@ -194,18 +212,16 @@ if __name__ == '__main__':
     omni_cflags += ";-D_CRT_SECURE_NO_DEPRECATE"
 
     rtm_cflags = omni_cflags + ";-DINCLUDE_stub_in_nt_dll"
-    if re.match("^41", dict["omni_dllver"]):
-        rtm_cflags += ";-DRTC_CORBA_CXXMAPPING11;-D_WIN32_WINNT=0x0500"
-    else:
+    if re.match("^40", dict["omni_dllver"]):
         rtm_cflags += ";-D_WIN32_WINNT=0x0400"
+    else:
+        rtm_cflags += ";-DRTC_CORBA_CXXMAPPING11;-D_WIN32_WINNT=0x0500"
 
     # libs
     omni_libs  = process_lib(dict["omni_lib"], "optimized")
     omni_libs += ";" + process_lib(dict["omni_libd"], "debug")
     rtm_libs   = process_lib(dict["rtm_lib"], "optimized")
     rtm_libs  += ";" + process_lib(dict["rtm_libd"], "debug")
-
-
 
     dict["omniorb_cflags"] = omni_cflags
     dict["omniorb_include_dirs"] = dict["omni_includes"] 
@@ -216,12 +232,9 @@ if __name__ == '__main__':
     dict["openrtm_cflags"] = rtm_cflags
     dict["openrtm_include_dirs"] = str(dict["rtm_includes"])
     dict["openrtm_ldflags"] = ""
-    dict["openrtm_lib_dirs"] = str(dict["rtm_libdir"] + ";" + dict["omni_libdir"])
+    dict["openrtm_lib_dirs"] = str("${OPENRTM_BIN_PATH};" + dict["omni_libdir"])
     dict["openrtm_libs"] = str(rtm_libs)
     dict["coil_include_dir"] = str(dict["rtm_libdir"])
-    dict["openrtm_include_dir"] = "%RTM_ROOT%"
-    dict["openrtm_libdir"] = "%RTM_ROOT%"
-    dict["openrtm_data_dir"] = "%RTM_ROOT%"
     dict["openrtm_version"] = str(dict["rtm_version"])
     dict["openrtm_version_major"] = str(dict["rtm_version"].split(".")[0])
     dict["openrtm_version_minor"] = str(dict["rtm_version"].split(".")[1])

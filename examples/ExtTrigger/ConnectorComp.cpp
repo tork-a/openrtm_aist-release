@@ -10,7 +10,7 @@
  *          National Institute of Industrial Science (AIST), Japan
  *          All rights reserved.
  *
- * $Id: ConnectorComp.cpp 1429 2009-07-06 08:28:25Z hakuta $
+ * $Id: ConnectorComp.cpp 2540 2014-03-29 08:09:18Z n-ando $
  */
 
 #include <iostream>
@@ -27,6 +27,10 @@
 
 
 using namespace RTC;
+
+#ifdef __QNX__
+using std::exit;
+#endif
 
 void usage()
 {

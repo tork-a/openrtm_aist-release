@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: TestRunner.cpp 2015 2010-12-29 11:33:33Z n-ando $
+ * $Id: TestRunner.cpp 2540 2014-03-29 08:09:18Z n-ando $
  *
  */
 
@@ -35,6 +35,10 @@
 #include <cppunit/TextOutputter.h>
 #include <cppunit/CompilerOutputter.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
+
+#ifdef __QNX__
+using std::exit;
+#endif
 
 enum FORMAT
   {

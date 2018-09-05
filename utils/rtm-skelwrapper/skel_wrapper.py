@@ -12,7 +12,7 @@
 #          Advanced Industrial Science and Technology (AIST), Japan
 #      All rights reserved.
 # 
-#  $Id: skel_wrapper.py 2521 2014-03-03 07:47:45Z n-ando $
+#  $Id: skel_wrapper.py 2520 2014-03-03 07:45:49Z n-ando $
 # 
 
 import yat

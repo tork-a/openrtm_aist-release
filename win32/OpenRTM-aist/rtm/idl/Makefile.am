@@ -2,8 +2,10 @@
 ##---------------------------------------------------------------------------
 ## Makefile.am for win32/OpenRTM-aist/rtm/idl
 ##
-## $Id: Makefile.am 2289 2012-02-03 02:33:33Z kurihara $
+## $Id: Makefile.am 2713 2016-04-01 02:18:02Z kawauchi $
 ##---------------------------------------------------------------------------
+SUBDIRS = device_interfaces .
+
 clean-local:
 	rm -rf Debug Release
 	rm -f *~ *.idl *.cpp *.h *.cc *.hh

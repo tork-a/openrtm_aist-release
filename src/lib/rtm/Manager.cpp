@@ -12,7 +12,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: Manager.cpp 2607 2015-04-30 06:40:25Z n-ando $
+ * $Id: Manager.cpp 2704 2016-02-17 09:01:25Z kawauchi $
  *
  */
 
@@ -102,7 +102,7 @@ namespace RTC
   
   /*!
    * @if jp
-   * @brief •ﬁ•Õ°º•∏•„§ŒΩÈ¥¸≤Ω
+   * @brief •ﬁ•Õ°º•∏•„§ŒΩÈ¥ÅEΩ
    * @else
    * @brief Initialize manager
    * @endif
@@ -174,8 +174,7 @@ namespace RTC
   
   /*!
    * @if jp
-   * @brief •ﬁ•Õ°º•∏•„°¶•∑•„•√•»•¿•¶•Û
-   * @else
+   * @brief •ﬁ•Õ°º•∏•„°¶•∑•„•√•»•¿•¶•ÅE   * @else
    * @brief Shutdown Manager
    * @endif
    */
@@ -186,7 +185,7 @@ namespace RTC
     shutdownNaming();
     shutdownORB();
     shutdownManager();
-    // Ω™Œª¬‘§¡πÁ§Ô§ª
+    // Ω™Œª¬‘§¡πÁ§ÅEª
     if (m_runner != NULL)
       {
 	m_runner->wait();
@@ -200,7 +199,7 @@ namespace RTC
   
   /*!
    * @if jp
-   * @brief •ﬁ•Õ°º•∏•„Ω™ŒªΩËÕ˝§Œ¬‘§¡πÁ§Ô§ª
+   * @brief •ﬁ•Õ°º•∏•„Ω™ŒªΩËÕ˝§Œ¬‘§¡πÁ§ÅEª
    * @else
    * @brief Wait for Manager's termination
    * @endif
@@ -224,7 +223,7 @@ namespace RTC
   
   /*!
    * @if jp
-   * @brief ΩÈ¥¸≤Ω•◊•Ì•∑°º•∏•„§Œ•ª•√•»
+   * @brief ΩÈ¥ÅEΩ•◊•˙¡∑°º•∏•„§Œ•ª•√•»
    * @else
    * @brief Set initial procedure
    * @endif
@@ -266,11 +265,33 @@ namespace RTC
 
     for (int i(0), len(mods.size()); i < len; ++i)
       {
-	std::string basename(coil::split(mods[i], ".").operator[](0));
-	basename += "Init";
+	size_t begin_pos(mods[i].find_first_of('('));
+	size_t end_pos(mods[i].find_first_of(')'));
+	std::string filename, initfunc;
+	if (begin_pos != std::string::npos && end_pos != std::string::npos &&
+	    begin_pos < end_pos)
+	  {
+	    initfunc = mods[i].substr(begin_pos + 1, end_pos - (begin_pos + 1));
+	    filename = mods[i].substr(0, begin_pos);
+	    coil::eraseBothEndsBlank(initfunc);
+	    coil::eraseBothEndsBlank(filename);
+	  }
+	else
+	  {
+	    initfunc = coil::split(mods[i], ".").operator[](0) + "Init";
+	    filename = mods[i];
+	  }
+	if (filename.find_first_of('.') == std::string::npos)
+	  {
+	    std::cout <<  m_config["manager.modules.C++.suffixes"] << std::endl;
+	    if (m_config.findNode("manager.modules.C++.suffixes") != 0)
+	      {
+		filename += "." + m_config["manager.modules.C++.suffixes"];
+	      }
+	  }
 	try
 	  {
-	    m_module->load(mods[i], basename);
+	    m_module->load(mods[i], initfunc);
 	  }
 	catch (ModuleManager::Error& e)
 	  {
@@ -298,13 +319,122 @@ namespace RTC
         m_initProc(this);
       }
 
+    RTC_TRACE(("Components pre-creation: %s",
+               m_config["manager.components.precreate"].c_str()));
     std::vector<std::string> comp;
     comp = coil::split(m_config["manager.components.precreate"], ",");
     for (int i(0), len(comp.size()); i < len; ++i)
       {
-	this->createComponent(comp[i].c_str());
+        this->createComponent(comp[i].c_str());
       }
 
+    { // pre-connection
+      RTC_TRACE(("Connection pre-creation: %s",
+                 m_config["manager.components.preconnect"].c_str()));
+      std::vector<std::string> connectors;
+      connectors = coil::split(m_config["manager.components.preconnect"], ",");
+      for (int i(0), len(connectors.size()); i < len; ++i)
+        {
+          // ConsoleIn.out:Console.in(dataflow_type=push,....)
+          coil::vstring conn_prop = coil::split(connectors[i], "(");
+          coil::replaceString(conn_prop[1], ")", "");
+          coil::vstring comp_ports;
+          comp_ports = coil::split(conn_prop[0], ":");
+          if (comp_ports.size() != 2)
+            {
+              RTC_ERROR(("Invalid format for pre-connection."));
+              RTC_ERROR(("Format must be Comp0.port0:Comp1.port1"));
+              continue;
+            }
+          std::string comp0_name = coil::split(comp_ports[0], ".")[0];
+          std::string comp1_name = coil::split(comp_ports[1], ".")[0];
+          RTObject_impl* comp0 = getComponent(comp0_name.c_str());
+          RTObject_impl* comp1 = getComponent(comp1_name.c_str());
+          if (comp0 == NULL)
+            { RTC_ERROR(("%s not found.", comp0_name.c_str())); continue; }
+          if (comp1 == NULL)
+            { RTC_ERROR(("%s not found.", comp1_name.c_str())); continue; }
+          std::string port0 = comp_ports[0];
+          std::string port1 = comp_ports[1];
+          
+          PortServiceList_var ports0 = comp0->get_ports();
+          PortServiceList_var ports1 = comp1->get_ports();
+          RTC_DEBUG(("%s has %d ports.", comp0_name.c_str(), ports0->length()));
+          RTC_DEBUG(("%s has %d ports.", comp1_name.c_str(), ports1->length()));
+          
+          PortService_var port0_var;
+          for (size_t p(0); p < ports0->length(); ++p)
+            {
+              PortProfile_var pp = ports0[p]->get_port_profile();
+              std::string s(CORBA::string_dup(pp->name));
+              if (comp_ports[0] == s)
+                {
+                  RTC_DEBUG(("port %s found: ", comp_ports[0].c_str()));
+                  port0_var = ports0[p];
+                }
+            }
+          PortService_var port1_var;
+          for (size_t p(0); p < ports1->length(); ++p)
+            {
+              PortProfile_var pp = ports1[p]->get_port_profile();
+              std::string s(CORBA::string_dup(pp->name));
+              if (port1 == s)
+                {
+                  RTC_DEBUG(("port %s found: ", comp_ports[1].c_str()));
+                  port1_var = ports1[p];
+                }
+            }
+          if (CORBA::is_nil(port0_var))
+            {
+              RTC_ERROR(("port0 %s is nil obj", comp_ports[0].c_str()));
+              continue;
+            }
+          if (CORBA::is_nil(port1_var))
+            {
+              RTC_ERROR(("port1 %s is nil obj", comp_ports[1].c_str()));
+              continue;
+            }
+          ConnectorProfile conn_prof;
+          std::string prof_name;
+          conn_prof.name = CORBA::string_dup(connectors[i].c_str());
+          conn_prof.connector_id = CORBA::string_dup("");
+          conn_prof.ports.length(2);
+          conn_prof.ports[0] = port0_var;
+          conn_prof.ports[1] = port1_var;
+          coil::Properties prop;
+          prop["dataport.dataflow_type"] = "push";
+          prop["dataport.interface_type"] = "corba_cdr";
+          coil::vstring opt_props = coil::split(conn_prop[1], "&");
+          for (size_t o(0); o < opt_props.size(); ++o)
+            {
+              coil::vstring temp = coil::split(opt_props[o], "=");
+              prop["dataport." + temp[0]] = temp[1];
+            }
+          NVUtil::copyFromProperties(conn_prof.properties, prop);
+          if (RTC::RTC_OK != port0_var->connect(conn_prof))
+            {
+              RTC_ERROR(("Connection error: %s",
+                         connectors[i].c_str()));
+            }
+        }
+    } // end of pre-connection
+
+    { // pre-activation
+      RTC_TRACE(("Components pre-activation: %s",
+                 m_config["manager.components.preactivation"].c_str()));
+      std::vector<std::string> comps;
+      comps = coil::split(m_config["manager.components.preactivation"],
+                               ",");
+      for (int i(0), len(comps.size()); i < len; ++i)
+        {
+          RTObject_impl* comp = getComponent(comps[i].c_str());
+          if (comp == NULL)
+            { RTC_ERROR(("%s not found.", comps[i].c_str())); continue; }
+
+          ExecutionContextList_var ecs = comp->get_owned_contexts();
+          ecs[0]->activate_component(comp->getObjRef());
+        }
+    } // end of pre-activation
     return true;
   }
   
@@ -338,7 +468,7 @@ namespace RTC
   //============================================================
   /*!
    * @if jp
-   * @brief •‚•∏•Â°º•Î§Œ•Ì°º•…
+   * @brief •‚•∏•Â°º•ÅEŒ•˙Ωº•…
    * @else
    * @brief Load module
    * @endif
@@ -368,7 +498,7 @@ namespace RTC
   
   /*!
    * @if jp
-   * @brief •‚•∏•Â°º•Î§Œ•¢•Û•Ì°º•…
+   * @brief •‚•∏•Â°º•ÅEŒ•¢•Û•˙Ωº•…
    * @else
    * @brief Unload module
    * @endif
@@ -382,7 +512,7 @@ namespace RTC
   
   /*!
    * @if jp
-   * @brief ¡¥•‚•∏•Â°º•Î§Œ•¢•Û•Ì°º•…
+   * @brief ¡¥•‚•∏•Â°º•ÅEŒ•¢•Û•˙Ωº•…
    * @else
    * @brief Unload all modules
    * @endif
@@ -396,8 +526,7 @@ namespace RTC
   
   /*!
    * @if jp
-   * @brief •Ì°º•…∫—§ﬂ§Œ•‚•∏•Â°º•Î•Í•π•»§ÚºË∆¿§π§Î
-   * @else
+   * @brief •˙Ωº•…∫—§ﬂ§Œ•‚•∏•Â°º•ÅEÅEπ•»§ÚºË∆¿§π§ÅE   * @else
    * @brief Get a list of loaded modules
    * @endif
    */
@@ -409,8 +538,7 @@ namespace RTC
   
   /*!
    * @if jp
-   * @brief •Ì°º•…≤ƒ«Ω§ •‚•∏•Â°º•Î•Í•π•»§ÚºË∆¿§π§Î
-   * @else
+   * @brief •˙Ωº•…≤ƒ«Ω§ •‚•∏•Â°º•ÅEÅEπ•»§ÚºË∆¿§π§ÅE   * @else
    * @brief Get a list of loadable modules
    * @endif
    */
@@ -425,8 +553,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   //============================================================
   /*!
    * @if jp
-   * @brief RT•≥•Û•›°º•Õ•Û•»Õ—•’•°•Ø•»•Í§Ú≈–œø§π§Î
-   * @else
+   * @brief RT•≥•Û•›°º•Õ•Û•»Õ—•’•°•Ø•»•Í§Ú≈–œø§π§ÅE   * @else
    * @brief Register RT-Component Factory
    * @endif
    */
@@ -466,8 +593,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief ExecutionContextÕ—•’•°•Ø•»•Í§Ú≈–œø§π§Î
-   * @else
+   * @brief ExecutionContextÕ—•’•°•Ø•»•Í§Ú≈–œø§π§ÅE   * @else
    * @brief Register ExecutionContext Factory
    * @endif
    */
@@ -494,8 +620,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief •’•°•Ø•»•Í¡¥•Í•π•»§ÚºË∆¿§π§Î
-   * @else
+   * @brief •’•°•Ø•»•ÅE¥•ÅEπ•»§ÚºË∆¿§π§ÅE   * @else
    * @brief Get the list of all Factories
    * @endif
    */
@@ -512,8 +637,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   //============================================================
   /*!
    * @if jp
-   * @brief RT•≥•Û•›°º•Õ•Û•»§Ú¿∏¿Æ§π§Î
-   * @else
+   * @brief RT•≥•Û•›°º•Õ•Û•»§Ú¿∏¿Æ§π§ÅE   * @else
    * @brief Create RT-Components
    * @endif
    */
@@ -625,7 +749,10 @@ std::vector<coil::Properties> Manager::getLoadableModules()
     for (int i(0); inherit_prop[i][0] != '\0'; ++i)
       {
         const char* key(inherit_prop[i]);
-        prop[key] = m_config[key];
+        if (m_config.findNode(key) != NULL)
+          {
+            prop[key] = m_config[key];
+          }
       }
       
     RTObject_impl* comp;
@@ -654,11 +781,15 @@ std::vector<coil::Properties> Manager::getLoadableModules()
     // Component initialization
     if (comp->initialize() != RTC::RTC_OK)
       {
-	RTC_TRACE(("RTC initialization failed: %s",
+        RTC_TRACE(("RTC initialization failed: %s",
                    comp_id["implementation_id"].c_str()));
-	comp->exit();
-	RTC_TRACE(("%s was finalized", comp_id["implementation_id"].c_str()));
-	return NULL;
+        RTC_TRACE(("%s was finalized", comp_id["implementation_id"].c_str()));
+        if (comp->exit() != RTC::RTC_OK)
+          {
+            RTC_DEBUG(("%s finalization was failed.",
+                       comp_id["implementation_id"].c_str()));
+          }
+        return NULL;
       }
     RTC_TRACE(("RTC initialization succeeded: %s",
                comp_id["implementation_id"].c_str()));
@@ -670,8 +801,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief RT•≥•Û•›°º•Õ•Û•»§Úƒæ¿‹ Manager §À≈–œø§π§Î
-   * @else
+   * @brief RT•≥•Û•›°º•Õ•Û•»§Úƒæ¿‹ Manager §À≈–œø§π§ÅE   * @else
    * @brief Register RT-Component directly without Factory
    * @endif
    */
@@ -693,8 +823,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief RT•≥•Û•›°º•Õ•Û•»§Œ≈–œø§Ú≤ÚΩ¸§π§Î
-   * @else
+   * @brief RT•≥•Û•›°º•Õ•Û•»§Œ≈–œø§Ú≤ÚΩÅEπ§ÅE   * @else
    * @brief Unregister RT-Components
    * @endif
    */
@@ -704,7 +833,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
     // ### NamingManager §Œ§ﬂ§«¬ÂÕ—≤ƒ«Ω
     m_compManager.unregisterObject(comp->getInstanceName());
     
-    std::vector<std::string> names(comp->getNamingNames());
+    coil::vstring names(comp->getNamingNames());
     
     for (int i(0), len(names.size()); i < len; ++i)
       {
@@ -740,8 +869,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief Manager §À≈–œø§µ§Ï§∆§§§ÎRT•≥•Û•›°º•Õ•Û•»§Ú∫ÔΩ¸§π§Î
-   * @else
+   * @brief Manager §À≈–œø§µ§ÅE∆§§§ÅET•≥•Û•›°º•Õ•Û•»§Ú∫ÅEÅEπ§ÅE   * @else
    * @brief Unregister RT-Components that have been registered to Manager
    * @endif
    */
@@ -795,8 +923,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief Manager §À≈–œø§µ§Ï§∆§§§ÎRT•≥•Û•›°º•Õ•Û•»§Ú∏°∫˜§π§Î
-   * @else
+   * @brief Manager §À≈–œø§µ§ÅE∆§§§ÅET•≥•Û•›°º•Õ•Û•»§Ú∏°∫˜§π§ÅE   * @else
    * @brief Get RT-Component's pointer
    * @endif
    */
@@ -808,8 +935,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief Manager §À≈–œø§µ§Ï§∆§§§Î¡¥RT•≥•Û•›°º•Õ•Û•»§ÚºË∆¿§π§Î
-   * @else
+   * @brief Manager §À≈–œø§µ§ÅE∆§§§ÅE¥RT•≥•Û•›°º•Õ•Û•»§ÚºË∆¿§π§ÅE   * @else
    * @brief Get all RT-Components registered in the Manager
    * @endif
    */
@@ -824,8 +950,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   //============================================================
   /*!
    * @if jp
-   * @brief ORB §Œ•›•§•Û•ø§ÚºË∆¿§π§Î
-   * @else
+   * @brief ORB §Œ•›•§•Û•ø§ÚºË∆¿§π§ÅE   * @else
    * @brief Get the pointer to the ORB
    * @endif
    */
@@ -837,8 +962,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief Manager §¨ª˝§ƒ RootPOA §Œ•›•§•Û•ø§ÚºË∆¿§π§Î
-   * @else
+   * @brief Manager §¨ª˝§ƒ RootPOA §Œ•›•§•Û•ø§ÚºË∆¿§π§ÅE   * @else
    * @brief Get the pointer to the RootPOA 
    * @endif
    */
@@ -850,8 +974,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief Manager §¨ª˝§ƒ POAManager §ÚºË∆¿§π§Î
-   * @else
+   * @brief Manager §¨ª˝§ƒ POAManager §ÚºË∆¿§π§ÅE   * @else
    * @brief Get the pointer to the POAManager 
    * @endif
    */
@@ -870,7 +993,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   //============================================================
   /*!
    * @if jp
-   * @brief Manager §Œ∆‚…ÙΩÈ¥¸≤ΩΩËÕ˝
+   * @brief Manager §Œ∆‚…ÙΩÈ¥ÅEΩΩËÕ˝
    * @else
    * @brief Manager internal initialization
    * @endif
@@ -969,7 +1092,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   //============================================================
   /*!
    * @if jp
-   * @brief System logger §ŒΩÈ¥¸≤Ω
+   * @brief System logger §ŒΩÈ¥ÅEΩ
    * @else
    * @brief System logger initialization
    * @endif
@@ -1027,7 +1150,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
                  
 	
     RTC_INFO(("%s", m_config["openrtm.version"].c_str()));
-    RTC_INFO(("Copyright (C) 2003-2010"));
+    RTC_INFO(("Copyright (C) 2003-2014"));
     RTC_INFO(("  Noriaki Ando"));
     RTC_INFO(("  Intelligent Systems Research Institute, AIST"));
     RTC_INFO(("Manager starting."));
@@ -1065,7 +1188,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   //============================================================
   /*!
    * @if jp
-   * @brief CORBA ORB §ŒΩÈ¥¸≤ΩΩËÕ˝
+   * @brief CORBA ORB §ŒΩÈ¥ÅEΩΩËÕ˝
    * @else
    * @brief CORBA ORB initialization
    * @endif
@@ -1133,7 +1256,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief ORB §Œ•≥•ﬁ•Û•…•È•§•Û•™•◊•∑•Á•Û∫Ó¿Æ
+   * @brief ORB §Œ•≥•ﬁ•Û•…•È•§•Û•™•◊•∑•Á•Û∫˚‹Æ
    * @else
    * @brief ORB command option creation
    * @endif
@@ -1316,7 +1439,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   //============================================================
   /*!
    * @if jp
-   * @brief NamingManager §ŒΩÈ¥¸≤Ω
+   * @brief NamingManager §ŒΩÈ¥ÅEΩ
    * @else
    * @brief NamingManager initialization
    * @endif
@@ -1388,7 +1511,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   //============================================================
   /*!
    * @if jp
-   * @brief ExecutionContextManager §ŒΩÈ¥¸≤Ω
+   * @brief ExecutionContextManager §ŒΩÈ¥ÅEΩ
    * @else
    * @brief ExecutionContextManager initialization
    * @endif
@@ -1419,7 +1542,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
 
   /*!
    * @if jp
-   * @brief Timer §ŒΩÈ¥¸≤Ω
+   * @brief Timer §ŒΩÈ¥ÅEΩ
    * @else
    * @brief Timer initialization
    * @endif
@@ -1520,8 +1643,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief RT•≥•Û•›°º•Õ•Û•»§Œ≈–œø≤ÚΩ¸
-   * @else
+   * @brief RT•≥•Û•›°º•Õ•Û•»§Œ≈–œø≤ÚΩÅE   * @else
    * @brief Unregister RT-Components
    * @endif
    */
@@ -1553,8 +1675,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief createComponent§Œ∞˙øÙ§ÚΩËÕ˝§π§Î
-   * @else
+   * @brief createComponent§Œ∞˙øÙ§ÚΩËÕ˝§π§ÅE   * @else
    *
    * @endif
    */
@@ -1649,7 +1770,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief RT•≥•Û•›°º•Õ•Û•»§Œ•≥•Û•’•£•Æ•Â•Ï°º•∑•Á•ÛΩËÕ˝
+   * @brief RT•≥•Û•›°º•Õ•Û•»§Œ•≥•Û•’•£•Æ•Â•ÅEº•∑•Á•ÛΩËÕ˝
    * @else
    *
    * @endif
@@ -1663,40 +1784,71 @@ std::vector<coil::Properties> Manager::getLoadableModules()
     
     std::string type_conf(category + "." + type_name + ".config_file");
     std::string name_conf(category + "." + inst_name + ".config_file");
-    
+    coil::vstring config_fname;
     
     coil::Properties type_prop, name_prop;
     
     // Load "category.instance_name.config_file"
     if (!m_config[name_conf].empty())
       {
-	std::ifstream conff(m_config[name_conf].c_str());
-	if (!conff.fail())
-	  {
-	    name_prop.load(conff);
-	  }
+        std::ifstream conff(m_config[name_conf].c_str());
+        if (!conff.fail())
+          {
+            name_prop.load(conff);
+            RTC_INFO(("Component instance conf file: %s loaded.",
+                      m_config[name_conf].c_str()));
+            RTC_DEBUG_STR((name_prop))
+              config_fname.push_back(m_config[name_conf].c_str());
+          }
       }
     if (m_config.findNode(category + "." + inst_name) != NULL)
       {
-        name_prop << m_config.getNode(category + "." + inst_name);
+        coil::Properties& temp(m_config.getNode(category + "." + inst_name));
+        coil::vstring keys(temp.propertyNames());
+        if (!(keys.size() == 1 && keys.back() == "config_file"))
+          {
+            name_prop << m_config.getNode(category + "." + inst_name);
+            RTC_INFO(("Component type conf exists in rtc.conf. Merged."));
+            RTC_DEBUG_STR((name_prop));
+            if (m_config.findNode("config_file") != NULL)
+              {
+                config_fname.push_back(m_config["config_file"]);
+              }
+          }
       }
     
     if (!m_config[type_conf].empty())
       {
-	std::ifstream conff(m_config[type_conf].c_str());
-	if (!conff.fail())
-	  {
-	    type_prop.load(conff);
-	  }
+        std::ifstream conff(m_config[type_conf].c_str());
+        if (!conff.fail())
+          {
+            type_prop.load(conff);
+            RTC_INFO(("Component type conf file: %s loaded.",
+                      m_config[type_conf].c_str()));
+            RTC_DEBUG_STR((type_prop));
+            config_fname.push_back(m_config[type_conf].c_str());
+          }
       }
     if (m_config.findNode(category + "." + type_name) != NULL)
       {
-        type_prop << m_config.getNode(category + "." + type_name);
+        coil::Properties& temp(m_config.getNode(category + "." + type_name));
+        coil::vstring keys(temp.propertyNames());
+        if (!(keys.size() == 1 && keys.back() == "config_file"))
+          {
+            type_prop << m_config.getNode(category + "." + type_name);
+            RTC_INFO(("Component type conf exists in rtc.conf. Merged."));
+            RTC_DEBUG_STR((type_prop));
+            if (m_config.findNode("config_file") != NULL)
+              {
+                config_fname.push_back(m_config["config_file"]);
+              }
+          }
       }
-
+    
     // Merge Properties. type_prop is merged properties
     comp->setProperties(prop);
     type_prop << name_prop;
+    type_prop["config_file"] = coil::flatten(coil::unique_sv(config_fname));    
     comp->setProperties(type_prop);
     
     //------------------------------------------------------------
@@ -1720,7 +1872,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief •◊•Ì•—•∆•£æ Û§Œ•ﬁ°º•∏
+   * @brief •◊•˙¡—•∆•£æ Û§Œ•ﬁ°º•∏
    * @else
    * @brief Merge property information
    * @endif
@@ -1747,13 +1899,12 @@ std::vector<coil::Properties> Manager::getLoadableModules()
   
   /*!
    * @if jp
-   * @brief NamingServer §À≈–œø§π§Î∫›§Œ≈–œøæ Û§Ú¡»§ﬂŒ©§∆§Î
-   * @else
+   * @brief NamingServer §À≈–œø§π§ÅE›§Œ≈–œøæ Û§Ú¡»§ﬂŒ©§∆§ÅE   * @else
    * @brief Construct registration information when registering to Naming server
    * @endif
    */
   std::string Manager::formatString(const char* naming_format,
-				    coil::Properties& prop)
+                                    coil::Properties& prop)
   {
     std::string name(naming_format), str("");
     std::string::iterator it, it_end;
@@ -1763,54 +1914,60 @@ std::vector<coil::Properties> Manager::getLoadableModules()
     it_end = name.end();
     for ( ; it != it_end; ++it)
       {
-	char c(*it);
-	if (c == '%')
-	  {
-	    ++count;
-	    if (!(count % 2)) str.push_back((*it));
-	  }
-	else if (c == '$')
-	  {
-	    count = 0;
-	    ++it;
-	    if (*it == '{' || *it == '(')
-	      {
-		++it;
-		std::string env;
-		for ( ; it != it_end && (*it) != '}' && (*it) != ')'; ++it)
-		  {
-		    env += *it;
-		  }
-		char* envval = coil::getenv(env.c_str());
-		if (envval != NULL) str += envval;
-	      }
-	    else
-	      {
-		str.push_back(c);
-	      }
-	  }
-	else
-	  {
-	    if (count > 0 && (count % 2))
-	      {
-		count = 0;
-		if      (c == 'n')  str += prop["instance_name"];
-		else if (c == 't')  str += prop["type_name"];
-		else if (c == 'm')  str += prop["type_name"];
-		else if (c == 'v')  str += prop["version"];
-		else if (c == 'V')  str += prop["vendor"];
-		else if (c == 'c')  str += prop["category"];
-		else if (c == 'h')  str += m_config["os.hostname"];
-		else if (c == 'M')  str += m_config["manager.name"];
-		else if (c == 'p')  str += m_config["manager.pid"];
-		else str.push_back(c);
-	      }
-	    else
-	      {
-		count = 0;
-		str.push_back(c);
-	      }
-	  }
+        char c(*it);
+        if (c == '%')
+          {
+            ++count;
+            if (!(count % 2)) str.push_back((*it));
+          }
+        else if (c == '$')
+          {
+            count = 0;
+            ++it;
+            if (*it == '{' || *it == '(')
+              {
+                ++it;
+                std::string env;
+                for ( ; it != it_end && (*it) != '}' && (*it) != ')'; ++it)
+                  {
+                    env += *it;
+                  }
+                char* envval = coil::getenv(env.c_str());
+                if (envval != NULL) str += envval;
+              }
+            else
+              {
+               str.push_back(c);
+              }
+          }
+        else
+          {
+            if (count > 0 && (count % 2))
+              {
+                count = 0;
+                if      (c == 'n')  str += prop["instance_name"];
+                else if (c == 't')  str += prop["type_name"];
+                else if (c == 'm')  str += prop["type_name"];
+                else if (c == 'v')  str += prop["version"];
+                else if (c == 'V')  str += prop["vendor"];
+                else if (c == 'c')  str += prop["category"];
+                else if (c == 'i')  str += prop["implementation_id"];
+                else if (c == 'N')
+                  {
+                    size_t n = prop["implementation_id"].size();
+                    str += prop["instance_name"].substr(n);
+                  }
+                else if (c == 'h')  str += m_config["os.hostname"];
+                else if (c == 'M')  str += m_config["manager.name"];
+                else if (c == 'p')  str += m_config["manager.pid"];
+                else str.push_back(c);
+              }
+            else
+              {
+                count = 0;
+                str.push_back(c);
+              }
+          }
       }
     return str;
   }

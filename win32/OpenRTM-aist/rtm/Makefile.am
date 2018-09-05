@@ -2,9 +2,9 @@
 ##---------------------------------------------------------------------------
 ## Makefile.am for win32/OpenRTM-aist/rtm
 ##
-## $Id: Makefile.am 2289 2012-02-03 02:33:33Z kurihara $
+## $Id: Makefile.am 2723 2016-05-24 02:13:45Z kawauchi $
 ##---------------------------------------------------------------------------
-SUBDIRS = idl .
+SUBDIRS = idl . ext
 
 RTM_VERSION = @RTM_VERSION@
 RTM_SHORT_VERSION = @RTM_SHORT_VERSION@

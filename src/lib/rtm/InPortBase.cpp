@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: InPortBase.cpp 2055 2011-03-10 02:34:03Z fsi-katami $
+ * $Id: InPortBase.cpp 2671 2015-10-20 02:40:00Z n-ando $
  *
  */
 
@@ -96,7 +96,17 @@ namespace RTC
   void InPortBase::init(coil::Properties& prop)
   {
     RTC_TRACE(("init()"));
+    RTC_PARANOID(("given properties:"));
+    RTC_DEBUG_STR((prop));
+
+    // merge properties to PortProfile.properties
     m_properties << prop;
+    NVList nv;
+    NVUtil::copyFromProperties(nv, m_properties);
+    CORBA_SeqUtil::push_back_list(m_profile.properties, nv);
+    RTC_PARANOID(("updated properties:"));
+    RTC_DEBUG_STR((m_properties));
+
     if (m_singlebuffer)
       {
         RTC_DEBUG(("single buffer mode."));

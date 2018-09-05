@@ -2,7 +2,7 @@
 ##------------------------------------------------------------
 ## Makefile.am for libRTCSkel
 ##
-## $Id: Makefile.am 2289 2012-02-03 02:33:33Z kurihara $
+## $Id: Makefile.am 2723 2016-05-24 02:13:45Z kawauchi $
 ##------------------------------------------------------------
 
 AUTOMAKE_OPTIONS = 1.4
@@ -213,7 +213,7 @@ lst:
 #------------------------------------------------------------
 win32_builddir=$(top_builddir)/win32/OpenRTM-aist/
 
-vcproj: vc8proj vc9proj vc10proj
+vcproj: vc8proj vc9proj vc10proj vc11proj vc12proj vc14proj
 
 vc8proj: libRTCSkel.vcproj.yaml
 	$(top_builddir)/build/vcprojtool.py vcproj \
@@ -248,6 +248,37 @@ vc10proj: libRTCSkel.vcproj.yaml
 		--header $(SKEL_H)
 	qkc -O- -sm $(win32_builddir)/rtm/idl/libRTCSkel_vc10.vcxproj
 
+vc11proj: libRTCSkel.vcproj.yaml
+	$(top_builddir)/build/vcxprojtool.py vcxproj \
+		--type LIB \
+		--vcversion "11.00" \
+		--version $(RTM_VERSION) \
+		--out $(win32_builddir)/rtm/idl/libRTCSkel_vc11.vcxproj \
+		--yaml libRTCSkel.vcproj.yaml \
+		--source $(SKEL_CPP) \
+		--header $(SKEL_H)
+	qkc -O- -sm $(win32_builddir)/rtm/idl/libRTCSkel_vc11.vcxproj
+
+vc12proj: libRTCSkel.vcproj.yaml
+	$(top_builddir)/build/vcxprojtool.py vcxproj \
+		--type LIB \
+		--vcversion "12.00" \
+		--version $(RTM_VERSION) \
+		--out $(win32_builddir)/rtm/idl/libRTCSkel_vc12.vcxproj \
+		--yaml libRTCSkel.vcproj.yaml \
+		--source $(SKEL_CPP) \
+		--header $(SKEL_H)
+	qkc -O- -sm $(win32_builddir)/rtm/idl/libRTCSkel_vc12.vcxproj
+vc14proj: libRTCSkel.vcproj.yaml
+		$(top_builddir)/build/vcxprojtool.py vcxproj \
+			--type LIB \
+			--vcversion "14.00" \
+			--version $(RTM_VERSION) \
+			--out $(win32_builddir)/rtm/idl/libRTCSkel_vc14.vcxproj \
+			--yaml libRTCSkel.vcproj.yaml \
+			--source $(SKEL_CPP) \
+			--header $(SKEL_H)
+	qkc -O- -sm $(win32_builddir)/rtm/idl/libRTCSkel_vc14.vcxproj
 #------------------------------------------------------------
 # for wxs file
 #------------------------------------------------------------
@@ -271,4 +302,3 @@ EXTRA_DIST = \
 	libRTCSkel.vcproj.yaml
 
 DIST_SUBDIRS = device_interfaces
-

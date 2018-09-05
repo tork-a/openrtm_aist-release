@@ -2,13 +2,13 @@
 ##------------------------------------------------------------
 ## Makefile.am for libRTC
 ##
-## $Id: Makefile.am 2289 2012-02-03 02:33:33Z kurihara $
+## $Id: Makefile.am 2723 2016-05-24 02:13:45Z kawauchi $
 ##------------------------------------------------------------
 
 AUTOMAKE_OPTIONS = 1.4
 
 ARTLIB = @ARTLIB@
-SUBDIRS = idl . @UNITTEST@
+SUBDIRS = idl . ext @UNITTEST@
 
 AM_CPPFLAGS=-I$(top_srcdir)/src/lib -I$(top_srcdir)/src/lib/coil/include -I$(top_srcdir)/src/lib/rtm -I$(top_srcdir)/src/lib/rtm/idl
 AM_LDFLAGS=-L$(top_builddir) -L$(top_builddir)/src/lib/rtm -L$(top_builddir)/src/lib/rtm/idl -L$(top_builddir)/src/lib/coil/lib
@@ -166,7 +166,7 @@ lst:
 #------------------------------------------------------------
 win32_builddir = $(top_builddir)/win32/OpenRTM-aist/
 
-vcproj: vc8proj vc9proj vc10proj
+vcproj: vc8proj vc9proj vc10proj vc11proj vc12proj vc14proj
 
 vc8proj: libRTC.vcproj.yaml
 	$(top_builddir)/build/vcprojtool.py vcproj \
@@ -201,6 +201,39 @@ vc10proj: libRTC.vcproj.yaml
 		--header $(rtmheader_HEADERS)
 	qkc -O- -sm $(win32_builddir)/rtm/libRTC_vc10.vcxproj
 
+vc11proj: libRTC.vcproj.yaml
+	$(top_builddir)/build/vcxprojtool.py vcxproj \
+		--type DLL \
+		--vcversion "11.00" \
+		--version $(RTM_VERSION) \
+		--out $(win32_builddir)/rtm/libRTC_vc11.vcxproj \
+		--yaml libRTC.vcproj.yaml \
+		--source $(RTC_SRC) \
+		--header $(rtmheader_HEADERS)
+	qkc -O- -sm $(win32_builddir)/rtm/libRTC_vc11.vcxproj
+
+vc12proj: libRTC.vcproj.yaml
+	$(top_builddir)/build/vcxprojtool.py vcxproj \
+		--type DLL \
+		--vcversion "12.00" \
+		--version $(RTM_VERSION) \
+		--out $(win32_builddir)/rtm/libRTC_vc12.vcxproj \
+		--yaml libRTC.vcproj.yaml \
+		--source $(RTC_SRC) \
+		--header $(rtmheader_HEADERS)
+	qkc -O- -sm $(win32_builddir)/rtm/libRTC_vc12.vcxproj
+	
+vc14proj: libRTC.vcproj.yaml
+	$(top_builddir)/build/vcxprojtool.py vcxproj \
+		--type DLL \
+		--vcversion "14.00" \
+		--version $(RTM_VERSION) \
+		--out $(win32_builddir)/rtm/libRTC_vc14.vcxproj \
+		--yaml libRTC.vcproj.yaml \
+		--source $(RTC_SRC) \
+		--header $(rtmheader_HEADERS)
+	qkc -O- -sm $(win32_builddir)/rtm/libRTC_vc14.vcxproj
+
 #------------------------------------------------------------
 # for wxs file
 #------------------------------------------------------------
@@ -225,4 +258,4 @@ EXTRA_DIST = \
 	$(rtmheader_HEADERS) \
 	libRTC.vcproj.yaml
 
-DIST_SUBDIRS = idl tests
+DIST_SUBDIRS = idl ext tests

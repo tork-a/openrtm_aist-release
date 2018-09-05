@@ -13,14 +13,14 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: OutPort.h 2143 2011-05-26 14:30:49Z n-ando $
+ * $Id: OutPort.h 2723 2016-05-24 02:13:45Z kawauchi $
  *
  */
 
 #ifndef RTC_OUTPORT_H
 #define RTC_OUTPORT_H
 
-#include <iostream>
+#include <functional>
 #include <string>
 
 #include <coil/TimeValue.h>
@@ -138,6 +138,8 @@ namespace RTC
 #endif
         m_value(value), m_onWrite(0), m_onWriteConvert(0)
     {
+      addProperty("dataport.data_value", m_value);
+      m_propValueIndex = NVUtil::find_index(m_profile.properties, "dataport.data_value");
     }
     
     /*!
@@ -209,6 +211,7 @@ namespace RTC
           (*m_onWrite)(value);
           RTC_TRACE(("OnWrite called"));
         }
+      m_profile.properties[m_propValueIndex].value <<= value;
 
       bool result(true);
       std::vector<const char *> disconnect_ids;
@@ -238,13 +241,13 @@ namespace RTC
       
             result = false;
             const char* id(m_connectors[i]->profile().id.c_str());
-            RTC::ConnectorProfile prof(findConnProfile(id));
 
             if (ret == CONNECTION_LOST)
               {
                 RTC_WARN(("connection_lost id: %s", id));
                 if (m_onConnectionLost != 0)
                   {
+                    RTC::ConnectorProfile prof(findConnProfile(id));
                     (*m_onConnectionLost)(prof);
                   }
                 disconnect_ids.push_back(id);
@@ -490,6 +493,8 @@ namespace RTC
     coil::TimeMeasure m_cdrtime;
 
     DataPortStatusList m_status;
+
+    CORBA::Long m_propValueIndex;
   };
 }; // namespace RTC
 

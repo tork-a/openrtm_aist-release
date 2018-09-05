@@ -41,7 +41,7 @@ Sensor_la_LIBADD  = $(top_builddir)/src/lib/rtm/libRTC.la \
 
 # Standalone RTCs
 example_PROGRAMS = ControllerComp MotorComp SensorComp Composite
-example_DATA = rtc.conf composite.conf
+example_DATA = rtc.conf composite.conf rtc.composite.linux.conf
 
 ControllerComp_SOURCES = ControllerComp.cpp 
 ControllerComp_DEPENDENCIES = Controller.la
@@ -86,7 +86,8 @@ EXTRA_DIST =                \
 	README.Motor        \
 	README.Sensor       \
 	rtc.conf            \
-	composite.conf
+	composite.conf      \
+	rtc.composite.linux.conf
 
 ALL_SRC =                  \
 	ControllerComp.cpp \
@@ -112,7 +113,7 @@ lst:
 #------------------------------------------------------------
 win32_builddir=$(top_builddir)/win32/OpenRTM-aist/examples/Composite
 
-vcproj: vc8proj vc9proj vc10proj
+vcproj: vc8proj vc9proj vc10proj vc11proj vc12proj vc14proj
 
 vc8proj: 
 	$(top_builddir)/build/vcprojtool.py vcproj           \
@@ -332,6 +333,225 @@ vc10proj:
 		--yaml ../rtc.vcproj.yaml                    \
 		--source Composite.cpp
 	qkc -O- -sm $(win32_builddir)/Composite_vc10.vcxproj
+
+vc11proj:
+	$(top_builddir)/build/vcxprojtool.py vcxproj           \
+		--type EXE                                   \
+		--vcversion "11.00"                           \
+		--projectname "ControllerComp"                \
+		--version $(RTM_VERSION)                     \
+		--out $(win32_builddir)/Controller_vc11.vcxproj \
+		--yaml ../rtc.vcproj.yaml                    \
+		--source Controller.cpp ControllerComp.cpp     \
+		--header Controller.h
+	qkc -O- -sm $(win32_builddir)/Controller_vc11.vcxproj
+	$(top_builddir)/build/vcxprojtool.py vcxproj              \
+		--type DLL                                      \
+		--vcversion "11.00"                              \
+		--projectname "Controller"                       \
+		--version $(RTM_VERSION)                        \
+		--out $(win32_builddir)/ControllerDll_vc11.vcxproj \
+		--yaml ../rtcdll.vcproj.yaml                    \
+		--source Controller.cpp                          \
+		--header Controller.h
+	qkc -O- -sm $(win32_builddir)/ControllerDll_vc11.vcxproj
+
+	$(top_builddir)/build/vcxprojtool.py vcxproj           \
+		--type EXE                                   \
+		--vcversion "11.00"                           \
+		--projectname "MotorComp"                \
+		--version $(RTM_VERSION)                     \
+		--out $(win32_builddir)/Motor_vc11.vcxproj \
+		--yaml ../rtc.vcproj.yaml                    \
+		--source Motor.cpp MotorComp.cpp     \
+		--header Motor.h
+	qkc -O- -sm $(win32_builddir)/Motor_vc11.vcxproj
+	$(top_builddir)/build/vcxprojtool.py vcxproj              \
+		--type DLL                                      \
+		--vcversion "11.00"                              \
+		--projectname "Motor"                       \
+		--version $(RTM_VERSION)                        \
+		--out $(win32_builddir)/MotorDll_vc11.vcxproj \
+		--yaml ../rtcdll.vcproj.yaml                    \
+		--source Motor.cpp                          \
+		--header Motor.h
+	qkc -O- -sm $(win32_builddir)/MotorDll_vc11.vcxproj
+
+	$(top_builddir)/build/vcxprojtool.py vcxproj           \
+		--type EXE                                   \
+		--vcversion "11.00"                           \
+		--projectname "SensorComp"                \
+		--version $(RTM_VERSION)                     \
+		--out $(win32_builddir)/Sensor_vc11.vcxproj \
+		--yaml ../rtc.vcproj.yaml                    \
+		--source Sensor.cpp SensorComp.cpp     \
+		--header Sensor.h
+	qkc -O- -sm $(win32_builddir)/Sensor_vc11.vcxproj
+	$(top_builddir)/build/vcxprojtool.py vcxproj              \
+		--type DLL                                      \
+		--vcversion "11.00"                              \
+		--projectname "Sensor"                       \
+		--version $(RTM_VERSION)                        \
+		--out $(win32_builddir)/SensorDll_vc11.vcxproj \
+		--yaml ../rtcdll.vcproj.yaml                    \
+		--source Sensor.cpp                          \
+		--header Sensor.h
+	qkc -O- -sm $(win32_builddir)/SensorDll_vc11.vcxproj
+	$(top_builddir)/build/vcxprojtool.py vcxproj           \
+		--type EXE                                   \
+		--vcversion "11.00"                           \
+		--projectname "Composite"                    \
+		--version $(RTM_VERSION)                     \
+		--out $(win32_builddir)/Composite_vc11.vcxproj \
+		--yaml ../rtc.vcproj.yaml                    \
+		--source Composite.cpp
+	qkc -O- -sm $(win32_builddir)/Composite_vc11.vcxproj
+
+vc12proj:
+	$(top_builddir)/build/vcxprojtool.py vcxproj           \
+		--type EXE                                   \
+		--vcversion "12.00"                           \
+		--projectname "ControllerComp"                \
+		--version $(RTM_VERSION)                     \
+		--out $(win32_builddir)/Controller_vc12.vcxproj \
+		--yaml ../rtc.vcproj.yaml                    \
+		--source Controller.cpp ControllerComp.cpp     \
+		--header Controller.h
+	qkc -O- -sm $(win32_builddir)/Controller_vc12.vcxproj
+	$(top_builddir)/build/vcxprojtool.py vcxproj              \
+		--type DLL                                      \
+		--vcversion "12.00"                              \
+		--projectname "Controller"                       \
+		--version $(RTM_VERSION)                        \
+		--out $(win32_builddir)/ControllerDll_vc12.vcxproj \
+		--yaml ../rtcdll.vcproj.yaml                    \
+		--source Controller.cpp                          \
+		--header Controller.h
+	qkc -O- -sm $(win32_builddir)/ControllerDll_vc12.vcxproj
+
+	$(top_builddir)/build/vcxprojtool.py vcxproj           \
+		--type EXE                                   \
+		--vcversion "12.00"                           \
+		--projectname "MotorComp"                \
+		--version $(RTM_VERSION)                     \
+		--out $(win32_builddir)/Motor_vc12.vcxproj \
+		--yaml ../rtc.vcproj.yaml                    \
+		--source Motor.cpp MotorComp.cpp     \
+		--header Motor.h
+	qkc -O- -sm $(win32_builddir)/Motor_vc12.vcxproj
+	$(top_builddir)/build/vcxprojtool.py vcxproj              \
+		--type DLL                                      \
+		--vcversion "12.00"                              \
+		--projectname "Motor"                       \
+		--version $(RTM_VERSION)                        \
+		--out $(win32_builddir)/MotorDll_vc12.vcxproj \
+		--yaml ../rtcdll.vcproj.yaml                    \
+		--source Motor.cpp                          \
+		--header Motor.h
+	qkc -O- -sm $(win32_builddir)/MotorDll_vc12.vcxproj
+
+	$(top_builddir)/build/vcxprojtool.py vcxproj           \
+		--type EXE                                   \
+		--vcversion "12.00"                           \
+		--projectname "SensorComp"                \
+		--version $(RTM_VERSION)                     \
+		--out $(win32_builddir)/Sensor_vc12.vcxproj \
+		--yaml ../rtc.vcproj.yaml                    \
+		--source Sensor.cpp SensorComp.cpp     \
+		--header Sensor.h
+	qkc -O- -sm $(win32_builddir)/Sensor_vc12.vcxproj
+	$(top_builddir)/build/vcxprojtool.py vcxproj              \
+		--type DLL                                      \
+		--vcversion "12.00"                              \
+		--projectname "Sensor"                       \
+		--version $(RTM_VERSION)                        \
+		--out $(win32_builddir)/SensorDll_vc12.vcxproj \
+		--yaml ../rtcdll.vcproj.yaml                    \
+		--source Sensor.cpp                          \
+		--header Sensor.h
+	qkc -O- -sm $(win32_builddir)/SensorDll_vc12.vcxproj
+	$(top_builddir)/build/vcxprojtool.py vcxproj           \
+		--type EXE                                   \
+		--vcversion "12.00"                           \
+		--projectname "Composite"                    \
+		--version $(RTM_VERSION)                     \
+		--out $(win32_builddir)/Composite_vc12.vcxproj \
+		--yaml ../rtc.vcproj.yaml                    \
+		--source Composite.cpp
+	qkc -O- -sm $(win32_builddir)/Composite_vc12.vcxproj
+
+vc14proj:
+	$(top_builddir)/build/vcxprojtool.py vcxproj           \
+		--type EXE                                   \
+		--vcversion "14.00"                           \
+		--projectname "ControllerComp"                \
+		--version $(RTM_VERSION)                     \
+		--out $(win32_builddir)/Controller_vc14.vcxproj \
+		--yaml ../rtc.vcproj.yaml                    \
+		--source Controller.cpp ControllerComp.cpp     \
+		--header Controller.h
+	qkc -O- -sm $(win32_builddir)/Controller_vc14.vcxproj
+	$(top_builddir)/build/vcxprojtool.py vcxproj              \
+		--type DLL                                      \
+		--vcversion "14.00"                              \
+		--projectname "Controller"                       \
+		--version $(RTM_VERSION)                        \
+		--out $(win32_builddir)/ControllerDll_vc14.vcxproj \
+		--yaml ../rtcdll.vcproj.yaml                    \
+		--source Controller.cpp                          \
+		--header Controller.h
+	qkc -O- -sm $(win32_builddir)/ControllerDll_vc14.vcxproj
+
+	$(top_builddir)/build/vcxprojtool.py vcxproj           \
+		--type EXE                                   \
+		--vcversion "14.00"                           \
+		--projectname "MotorComp"                \
+		--version $(RTM_VERSION)                     \
+		--out $(win32_builddir)/Motor_vc14.vcxproj \
+		--yaml ../rtc.vcproj.yaml                    \
+		--source Motor.cpp MotorComp.cpp     \
+		--header Motor.h
+	qkc -O- -sm $(win32_builddir)/Motor_vc14.vcxproj
+	$(top_builddir)/build/vcxprojtool.py vcxproj              \
+		--type DLL                                      \
+		--vcversion "14.00"                              \
+		--projectname "Motor"                       \
+		--version $(RTM_VERSION)                        \
+		--out $(win32_builddir)/MotorDll_vc14.vcxproj \
+		--yaml ../rtcdll.vcproj.yaml                    \
+		--source Motor.cpp                          \
+		--header Motor.h
+	qkc -O- -sm $(win32_builddir)/MotorDll_vc14.vcxproj
+
+	$(top_builddir)/build/vcxprojtool.py vcxproj           \
+		--type EXE                                   \
+		--vcversion "14.00"                           \
+		--projectname "SensorComp"                \
+		--version $(RTM_VERSION)                     \
+		--out $(win32_builddir)/Sensor_vc14.vcxproj \
+		--yaml ../rtc.vcproj.yaml                    \
+		--source Sensor.cpp SensorComp.cpp     \
+		--header Sensor.h
+	qkc -O- -sm $(win32_builddir)/Sensor_vc14.vcxproj
+	$(top_builddir)/build/vcxprojtool.py vcxproj              \
+		--type DLL                                      \
+		--vcversion "14.00"                              \
+		--projectname "Sensor"                       \
+		--version $(RTM_VERSION)                        \
+		--out $(win32_builddir)/SensorDll_vc14.vcxproj \
+		--yaml ../rtcdll.vcproj.yaml                    \
+		--source Sensor.cpp                          \
+		--header Sensor.h
+	qkc -O- -sm $(win32_builddir)/SensorDll_vc14.vcxproj
+	$(top_builddir)/build/vcxprojtool.py vcxproj           \
+		--type EXE                                   \
+		--vcversion "14.00"                           \
+		--projectname "Composite"                    \
+		--version $(RTM_VERSION)                     \
+		--out $(win32_builddir)/Composite_vc14.vcxproj \
+		--yaml ../rtc.vcproj.yaml                    \
+		--source Composite.cpp
+	qkc -O- -sm $(win32_builddir)/Composite_vc14.vcxproj
 
 dist-hook: lst vcproj
 

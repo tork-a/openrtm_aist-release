@@ -12,7 +12,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: RTObject.cpp 2287 2012-02-03 00:32:28Z n-ando $
+ * $Id: RTObject.cpp 2540 2014-03-29 08:09:18Z n-ando $
  *
  */
 
@@ -24,6 +24,10 @@
 #include <coil/stringutil.h>
 #include <iostream>
 #include <typeinfo>
+
+#ifdef __QNX__
+using std::atof;
+#endif
 
 namespace RTC
 {

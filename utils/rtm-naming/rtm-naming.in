@@ -10,7 +10,7 @@
 #          Advanced Industrial Science and Technology (AIST), Japan
 #      All rights reserved.
 # 
-#  $Id: rtm-naming.in 2209 2011-07-27 14:02:57Z n-ando $
+#  $Id: rtm-naming.in 2705 2016-02-17 09:08:00Z kawauchi $
 # 
 
 pname=`basename $cosnames`
@@ -234,6 +234,7 @@ start_omninames()
     echo 'Starting omniORB omniNames: '$hostname':'$port
     rm -f ./omninames-$hostname.log
     rm -f ./omninames-$hostname.bak
+    rm -f ./omninames-$hostname.dat
     $cosnames -start $port -logdir $currdir &
     ret=$!
     sleep 1

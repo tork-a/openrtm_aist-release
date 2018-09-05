@@ -105,7 +105,7 @@ lst:
 win32_builddir=$(top_builddir)/win32/OpenRTM-aist/ext/sdo/observer
 PROJNAME=ComponentObserverConsumer
 
-vcproj: vc8proj vc9proj vc10proj
+vcproj: vc8proj vc9proj vc10proj vc11proj vc12proj vc14proj
 
 vc8proj: 
 	$(top_builddir)/build/vcprojtool.py vcproj              \
@@ -117,7 +117,7 @@ vc8proj:
 		--yaml $(top_builddir)/examples/rtcdll.vcproj.yaml \
 		--source $(OBSERVER_WIN_SRC)                        \
 		--header $(OBSERVER_WIN_H)
-	qkc -sm $(win32_builddir)/$(PROJNAME)Dll_vc8.vcproj
+	qkc -O- -sm $(win32_builddir)/$(PROJNAME)Dll_vc8.vcproj
 
 vc9proj:
 	$(top_builddir)/build/vcprojtool.py vcproj              \
@@ -129,7 +129,7 @@ vc9proj:
 		--yaml $(top_builddir)/examples/rtcdll.vcproj.yaml \
 		--source $(OBSERVER_WIN_SRC)                        \
 		--header $(OBSERVER_WIN_H)
-	qkc -sm $(win32_builddir)/$(PROJNAME)Dll_vc9.vcproj
+	qkc -O- -sm $(win32_builddir)/$(PROJNAME)Dll_vc9.vcproj
 
 vc10proj:
 	$(top_builddir)/build/vcxprojtool.py vcxproj              \
@@ -141,9 +141,44 @@ vc10proj:
 		--yaml $(top_builddir)/examples/rtcdll.vcproj.yaml  \
 		--source $(OBSERVER_WIN_SRC)                          \
 		--header $(OBSERVER_WIN_H)
-	qkc -sm $(win32_builddir)/$(PROJNAME)Dll_vc10.vcxproj
+	qkc -O- -sm $(win32_builddir)/$(PROJNAME)Dll_vc10.vcxproj
 
+vc11proj:
+	$(top_builddir)/build/vcxprojtool.py vcxproj              \
+		--type DLL                                        \
+		--vcversion "11.00"                               \
+		--projectname "$(PROJNAME)"                       \
+		--version $(RTM_VERSION)                          \
+		--out $(win32_builddir)/$(PROJNAME)Dll_vc11.vcxproj \
+		--yaml $(top_builddir)/examples/rtcdll.vcproj.yaml  \
+		--source $(OBSERVER_WIN_SRC)                          \
+		--header $(OBSERVER_WIN_H)
+	qkc -O- -sm $(win32_builddir)/$(PROJNAME)Dll_vc11.vcxproj
 
+vc12proj:
+	$(top_builddir)/build/vcxprojtool.py vcxproj              \
+		--type DLL                                        \
+		--vcversion "12.00"                               \
+		--projectname "$(PROJNAME)"                       \
+		--version $(RTM_VERSION)                          \
+		--out $(win32_builddir)/$(PROJNAME)Dll_vc12.vcxproj \
+		--yaml $(top_builddir)/examples/rtcdll.vcproj.yaml  \
+		--source $(OBSERVER_WIN_SRC)                          \
+		--header $(OBSERVER_WIN_H)
+	qkc -O- -sm $(win32_builddir)/$(PROJNAME)Dll_vc12.vcxproj
+
+vc14proj:
+	$(top_builddir)/build/vcxprojtool.py vcxproj              \
+		--type DLL                                        \
+		--vcversion "14.00"                               \
+		--projectname "$(PROJNAME)"                       \
+		--version $(RTM_VERSION)                          \
+		--out $(win32_builddir)/$(PROJNAME)Dll_vc14.vcxproj \
+		--yaml $(top_builddir)/examples/rtcdll.vcproj.yaml  \
+		--source $(OBSERVER_WIN_SRC)                          \
+		--header $(OBSERVER_WIN_H)
+	qkc -O- -sm $(win32_builddir)/$(PROJNAME)Dll_vc14.vcxproj
+	
 dist-hook: lst vcproj
 
 

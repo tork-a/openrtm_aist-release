@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: ManagerConfig.cpp 2102 2011-05-22 13:56:17Z n-ando $
+ * $Id: ManagerConfig.cpp 2540 2014-03-29 08:09:18Z n-ando $
  *
  */
 
@@ -24,6 +24,10 @@
 #include <coil/OS.h>
 #include <coil/stringutil.h>
 #include <rtm/DefaultConfiguration.h>
+
+#ifdef __QNX__
+using std::sprintf;
+#endif
 
 namespace RTC
 {

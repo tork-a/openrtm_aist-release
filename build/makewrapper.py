@@ -11,7 +11,7 @@
 #         Advanced Industrial Science and Technology (AIST), Japan
 #     All rights reserved.
 #
-# $Id: makewrapper.py 2139 2011-05-26 13:52:32Z n-ando $
+# $Id: makewrapper.py 2404 2014-02-06 02:15:22Z n-ando $
 #
 
 import sys
@@ -280,7 +280,10 @@ class wrapper_gen:
         self.write_skelh()
         self.write_stub()
         self.write_stubh()
-        self.omniorb_gcc4_fix()
+
+        import sys
+        if sys.platform != 'win32':
+            self.omniorb_gcc4_fix()
         return
 
     def write_skel(self):

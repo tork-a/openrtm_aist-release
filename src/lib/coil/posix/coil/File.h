@@ -27,6 +27,11 @@
 #include <coil/config_coil.h>
 #include <coil/stringutil.h>
 
+#ifdef __QNX__
+using std::strlen;
+using std::strcpy;
+#endif
+
 namespace coil
 {
 
@@ -137,7 +142,7 @@ namespace coil
           {
             const char* globc(glob_str);
             std::string fname(ent->d_name);
-            for (size_t i(0); i < fname.size() && globc != '\0'; ++i, ++globc)
+            for (size_t i(0); i < fname.size() && *globc != '\0'; ++i, ++globc)
               {
                 if (*globc == '*')
                   {

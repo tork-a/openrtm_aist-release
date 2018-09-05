@@ -13,13 +13,17 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: Properties.cpp 1971 2010-06-03 08:46:40Z n-ando $
+ * $Id: Properties.cpp 2584 2014-10-21 03:58:24Z kawauchi $
  *
  */
 
 #include <coil/Properties.h>
 #include <coil/stringutil.h>
 #include <iostream>
+
+#ifdef __QNX__
+using std::size_t;
+#endif
 
 namespace coil
 {
@@ -342,7 +346,8 @@ namespace coil
 	coil::eraseHeadBlank(tmp);
 	
 	// Skip comments or empty lines
-	if (tmp[0] == '#' || tmp[0] == '!' || tmp == "") continue;
+	if (tmp.empty()) { continue; }
+    if (tmp[0] == '#' || tmp[0] == '!') { continue; }
 	
 	// line-end '\' continues entry
 	if (tmp[tmp.size() - 1] == '\\' && !coil::isEscaped(tmp, tmp.size() - 1))
@@ -354,7 +359,7 @@ namespace coil
 	pline += tmp;
 	
 	// Skip empty line (made of only ' ' or '\t')
-	if (pline == "") continue;
+	if (pline.empty()) { continue; }
 	
 	std::string key, value;
 	splitKeyValue(pline, key, value);
