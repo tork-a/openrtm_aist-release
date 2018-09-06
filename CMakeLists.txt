@@ -13,8 +13,10 @@ add_custom_command(OUTPUT ${PROJECT_SOURCE_DIR}/configure
   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
 # Again, straightforward: Use ./configure to produce ./Makefile
+execute_process(COMMAND pkg-config omniORB4 --variable=libdir OUTPUT_VARIABLE omniorb_dir OUTPUT_STRIP_TRAILING_WHITESPACE)
 add_custom_command(OUTPUT ${PROJECT_SOURCE_DIR}/Makefile
-  COMMAND ${PROJECT_SOURCE_DIR}/configure --prefix=${CMAKE_INSTALL_PREFIX}
+  COMMAND sed -i 's@$$with_omniorb/lib@$$with_omniorb/lib $$with_omniorb@' ${PROJECT_SOURCE_DIR}/configure
+  COMMAND ${PROJECT_SOURCE_DIR}/configure --prefix=${CMAKE_INSTALL_PREFIX} --with-omniorb=${omniorb_dir}
   DEPENDS ${PROJECT_SOURCE_DIR}/configure
   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
