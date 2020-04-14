@@ -5,7 +5,7 @@
 # @date   $Date: 2007/01/21 06:52:04 $
 # @author Noriaki Ando <n-ando@aist.go.jp>
 #
-# $Id: Makefile.am 1715 2010-01-20 09:34:26Z kurihara $
+# $Id$
 #
 #------------------------------------------------------------
 

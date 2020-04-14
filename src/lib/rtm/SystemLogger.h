@@ -12,7 +12,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: SystemLogger.h 2017 2010-12-30 16:38:36Z n-ando $
+ * $Id$
  *
  */
 

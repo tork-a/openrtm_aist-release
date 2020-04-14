@@ -4,7 +4,7 @@
  * @brief Sample string in component
  * @date $Date: 2005-05-12 09:06:20 $
  *
- * $Id: StringIn.cpp 1132 2009-01-14 07:38:39Z kojima $
+ * $Id$
  */
 
 

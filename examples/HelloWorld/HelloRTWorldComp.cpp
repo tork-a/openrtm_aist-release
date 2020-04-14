@@ -4,7 +4,7 @@
  * @brief Hello RT world component
  * @date $Date: 2005-05-12 09:06:20 $
  *
- * $Id: HelloRTWorldComp.cpp 1132 2009-01-14 07:38:39Z kojima $
+ * $Id$
  */
 
 

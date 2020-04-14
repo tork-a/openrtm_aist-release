@@ -5,7 +5,7 @@
  * @date   $Date: 2008/01/28 13:52:19 $
  * @author Noriaki Ando <n-ando@aist.go.jp>
  *
- * $Id: PublisherPeriodicTests.cpp 2015 2010-12-29 11:33:33Z n-ando $
+ * $Id$
  *
  */
 

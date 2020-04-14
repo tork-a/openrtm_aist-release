@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: ModuleManager.h 2077 2011-04-29 12:43:34Z n-ando $
+ * $Id$
  *
  */
 

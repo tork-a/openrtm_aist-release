@@ -5,7 +5,7 @@
  * @date   $Date: 2008/05/01 08:01:03 $
  * @author Noriaki Ando <n-ando@aist.go.jp>
  *
- * $Id: ManagerConfigTests.cpp 1971 2010-06-03 08:46:40Z n-ando $
+ * $Id$
  *
  */
 

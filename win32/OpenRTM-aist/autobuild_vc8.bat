@@ -11,7 +11,7 @@
 @rem         Advanced Industrial Science and Technology (AIST), Japan
 @rem     All rights reserved.
 @rem
-@rem $Id: autobuild_vc8.bat 2293 2012-02-03 07:58:31Z kurihara $
+@rem $Id$
 @rem
 
 @rem ------------------------------------------------------------

@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: NamingManager.cpp 1781 2010-01-25 14:19:51Z n-ando $
+ * $Id$
  *
  */
 

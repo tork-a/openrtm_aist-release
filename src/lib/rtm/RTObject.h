@@ -11,7 +11,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: RTObject.h 2209 2011-07-27 14:02:57Z n-ando $
+ * $Id$
  *
  */
 

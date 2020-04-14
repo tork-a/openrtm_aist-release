@@ -12,7 +12,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: Manager.cpp 2704 2016-02-17 09:01:25Z kawauchi $
+ * $Id$
  *
  */
 
@@ -1786,7 +1786,6 @@ std::vector<coil::Properties> Manager::getLoadableModules()
     std::string name_conf(category + "." + inst_name + ".config_file");
     coil::vstring config_fname;
     
-    coil::vstring config_fname;
     coil::Properties type_prop, name_prop;
     
     // Load "category.instance_name.config_file"

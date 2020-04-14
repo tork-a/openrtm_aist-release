@@ -14,7 +14,7 @@
 #          Advanced Industrial Science and Technology (AIST), Japan
 #      All rights reserved.
 # 
-#  $Id: rtm-skelwrapper 2100 2011-05-21 09:03:23Z n-ando $
+#  $Id$
 # 
 
 import os

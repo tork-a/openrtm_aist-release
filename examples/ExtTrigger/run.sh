@@ -10,7 +10,7 @@
 #          National Institute of Industrial Science (AIST), Japan
 #          All rights reserved.
 #
-# $Id: run.sh 1421 2009-07-01 07:19:36Z hakuta $
+# $Id$
 #
 
 nsport='9876'

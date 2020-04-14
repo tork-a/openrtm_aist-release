@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: ManagerConfig.cpp 2540 2014-03-29 08:09:18Z n-ando $
+ * $Id$
  *
  */
 
@@ -118,7 +118,6 @@ namespace RTC
 
     // Properties from arguments are marged finally
     prop << m_argprop;
-    prop["config_file"] = m_configFile;
   }
   
   /*!

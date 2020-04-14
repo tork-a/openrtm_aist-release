@@ -4,7 +4,7 @@
  * @brief USB Camera Acquire component
  * @date  $Date: 2007-07-20 20:33:21 $
  *
- * $Id: USBCameraAcquire.h 1812 2010-01-27 09:49:23Z n-ando $
+ * $Id$
  */
 
 #ifndef USBCAMERAACQUIRE_H

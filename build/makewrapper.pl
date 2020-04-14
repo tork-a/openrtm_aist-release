@@ -10,7 +10,7 @@
 #         Advanced Industrial Science and Technology (AIST), Japan
 #     All rights reserved.
 #
-# $Id: makewrapper.pl 2176 2011-06-06 00:32:16Z n-ando $
+# $Id$
 #
 
 $date = localtime();

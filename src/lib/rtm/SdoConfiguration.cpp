@@ -12,7 +12,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: SdoConfiguration.cpp 2153 2011-05-31 03:14:52Z n-ando $
+ * $Id$
  *
  */
 

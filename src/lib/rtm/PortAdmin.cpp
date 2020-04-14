@@ -12,7 +12,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: PortAdmin.cpp 2132 2011-05-24 03:56:21Z n-ando $
+ * $Id$
  *
  */
 
