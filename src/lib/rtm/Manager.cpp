@@ -1786,7 +1786,6 @@ std::vector<coil::Properties> Manager::getLoadableModules()
     std::string name_conf(category + "." + inst_name + ".config_file");
     coil::vstring config_fname;
     
-    coil::vstring config_fname;
     coil::Properties type_prop, name_prop;
     
     // Load "category.instance_name.config_file"
