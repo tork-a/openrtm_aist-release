@@ -4,7 +4,7 @@
  * @brief Hello RT world component
  * @date $Date: 2005-05-12 09:06:20 $
  *
- * $Id: HelloRTWorld.h 775 2008-07-28 16:14:45Z n-ando $
+ * $Id$
  */
 
 #ifndef __HELLORTWORLD_h__

@@ -4,7 +4,7 @@
  * @brief 'hellow
  * $Date: 2007-07-20 20:33:29 $
  *
- * $Id: USBCameraMonitor.cpp 1376 2009-05-24 05:05:43Z n-ando $
+ * $Id$
  */
 
 #include "USBCameraMonitor.h"

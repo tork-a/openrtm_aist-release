@@ -4,7 +4,7 @@
  * @brief Console output component
  * @date  $Date: 2008-02-29 04:55:03 $
  *
- * $Id: ConsoleOut.h 1778 2010-01-25 10:29:27Z hakuta $
+ * $Id$
  */
 
 #ifndef CONSOLEOUT_H

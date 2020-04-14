@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: NumberingPolicy.h 1569 2009-11-12 14:36:47Z n-ando $
+ * $Id$
  *
  */
 

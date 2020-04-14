@@ -11,7 +11,7 @@
 #         Advanced Industrial Science and Technology (AIST), Japan
 #     All rights reserved.
 #
-# $Id: makevcproj.py 2176 2011-06-06 00:32:16Z n-ando $
+# $Id$
 #
 
 import sys

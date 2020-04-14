@@ -10,7 +10,7 @@
 #          Advanced Industrial Science and Technology (AIST), Japan
 #      All rights reserved.
 # 
-#  $Id: rtm-naming.in 2705 2016-02-17 09:08:00Z kawauchi $
+#  $Id$
 # 
 
 pname=`basename $cosnames`

@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: CorbaPort.h 2034 2011-01-25 06:33:21Z harumi $
+ * $Id$
  *
  */
 

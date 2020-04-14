@@ -4,7 +4,7 @@
  * @brief Properties test class
  * @date $Date: 2006-10-26 01:34:57 $
  * @author Shinji Kurihara
- * $Id: ModuleManagerTests.cpp 775 2008-07-28 16:14:45Z n-ando $
+ * $Id$
  *
  */
 

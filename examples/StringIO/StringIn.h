@@ -4,7 +4,7 @@
  * @brief Sample string in component
  * @date $Date: 2005-05-12 09:06:20 $
  *
- * $Id: StringIn.h 775 2008-07-28 16:14:45Z n-ando $
+ * $Id$
  */
 
 #ifndef __STRINGIN_h__

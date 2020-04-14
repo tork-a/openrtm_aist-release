@@ -7,7 +7,7 @@
 ## SDOPackage.idlで定義されているオペレーション
 ## Organizationの追加と削除に関するオペレーション
 #
-# $Id: AddRemoveOrganizationSDOPackageTest.py 1541 2009-08-31 07:21:12Z hakuta $
+# $Id$
 #
 
 from rtc_handle import *

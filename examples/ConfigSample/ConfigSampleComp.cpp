@@ -4,7 +4,7 @@
  * @brief Standalone component
  * @date $Date: 2008-01-14 07:45:52 $
  *
- * $Id: ConfigSampleComp.cpp 1406 2009-06-24 14:36:32Z kurihara $
+ * $Id$
  */
 
 #include <rtm/Manager.h>

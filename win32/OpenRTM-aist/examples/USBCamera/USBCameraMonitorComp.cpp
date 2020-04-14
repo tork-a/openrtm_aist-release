@@ -4,7 +4,7 @@
  * @brief Standalone component
  * @date $Date: 2007-07-20 20:33:38 $
  *
- * $Id: USBCameraMonitorComp.cpp 706 2008-04-16 00:36:15Z n-ando $
+ * $Id$
  */
 
 #include <rtm/Manager.h>
