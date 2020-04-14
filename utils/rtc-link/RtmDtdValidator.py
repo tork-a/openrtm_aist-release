@@ -13,7 +13,7 @@
 #          Advanced Industrial Science and Technology (AIST), Japan
 #      All rights reserved.
 # 
-#  $Id: RtmDtdValidator.py 775 2008-07-28 16:14:45Z n-ando $
+#  $Id$
 #
 
 # dtdValidator.py -- xml with DTD Validator

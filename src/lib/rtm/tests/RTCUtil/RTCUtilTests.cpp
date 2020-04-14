@@ -4,7 +4,7 @@
  * @brief  RTCUtil test class
  * @date   $Date: 2008/05/02 11:29:13 $
  *
- * $Id: RTCUtilTests.cpp 1971 2010-06-03 08:46:40Z n-ando $
+ * $Id$
  *
  */
 

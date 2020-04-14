@@ -6,7 +6,7 @@
 #
 # Copyright (C) 2008 Noriaki Ando, All rights reserved.
 #
-# $Id: yat.py 775 2008-07-28 16:14:45Z n-ando $
+# $Id$
 #
 
 #

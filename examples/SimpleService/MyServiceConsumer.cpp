@@ -4,7 +4,7 @@
  * @brief MyService Consumer Sample component
  * $Date: 2008-01-14 07:46:42 $
  *
- * $Id: MyServiceConsumer.cpp 1661 2010-01-15 09:12:51Z kurihara $
+ * $Id$
  */
 
 #include "MyServiceConsumer.h"

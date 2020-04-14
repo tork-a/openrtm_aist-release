@@ -7,7 +7,7 @@
 ## Manager.idlで定義されているオペレーション
 ## ステートレスなオペレーション
 #
-# $Id: ManagerTest.py 1824 2010-01-28 01:51:44Z hakuta $
+# $Id$
 #
 
 from rtc_handle import *

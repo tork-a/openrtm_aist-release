@@ -7,7 +7,7 @@
 ## RTC.idlで定義されているオペレーション
 ## ポートに関するオペレーション
 #
-# $Id: ConnectRTCTest.py 1541 2009-08-31 07:21:12Z hakuta $
+# $Id$
 #
 
 from rtc_handle import *

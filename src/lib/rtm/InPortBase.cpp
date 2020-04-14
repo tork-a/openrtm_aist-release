@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: InPortBase.cpp 2671 2015-10-20 02:40:00Z n-ando $
+ * $Id$
  *
  */
 

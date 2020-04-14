@@ -7,7 +7,7 @@
 ## SDOPackage.idlで定義されているオペレーション
 ## OrganizationのMemberの追加と削除に関するオペレーション
 #
-# $Id: AddRemoveMemberSDOPackageTest.py 1541 2009-08-31 07:21:12Z hakuta $
+# $Id$
 #
 
 

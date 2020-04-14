@@ -11,7 +11,7 @@
 #         Advanced Industrial Science and Technology (AIST), Japan
 #     All rights reserved.
 #
-# $Id: slntool.py 2694 2016-01-14 02:57:20Z kawauchi $
+# $Id$
 #
 
 import sys

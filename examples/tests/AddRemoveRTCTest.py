@@ -7,7 +7,7 @@
 ## RTC.idlで定義されているオペレーション
 ## RTCの追加・削除に関するオペレーション
 #
-# $Id: AddRemoveRTCTest.py 1541 2009-08-31 07:21:12Z hakuta $
+# $Id$
 #
 
 from rtc_handle import *

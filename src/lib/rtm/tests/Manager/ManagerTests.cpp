@@ -4,7 +4,7 @@
  * @brief  Manager test class
  * @date   $Date: 2008/05/12 03:58:45 $
  *
- * $Id: ManagerTests.cpp 2015 2010-12-29 11:33:33Z n-ando $
+ * $Id$
  *
  */
 

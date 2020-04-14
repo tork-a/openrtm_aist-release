@@ -12,7 +12,7 @@
 #          Advanced Industrial Science and Technology (AIST), Japan
 #      All rights reserved.
 #
-#  $Id: rtm-config.in 2333 2012-02-22 08:26:23Z n-ando $
+#  $Id$
 #
 
 rtm_prefix="@prefix@"

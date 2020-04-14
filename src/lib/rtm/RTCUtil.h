@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: RTCUtil.h 1703 2010-01-20 01:12:01Z fsi-katami $
+ * $Id$
  *
  */
 

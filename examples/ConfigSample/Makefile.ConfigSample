@@ -19,7 +19,7 @@
 #  --config=vector_param0:std::vector<double>:0.0,1.0,2.0,3.0,4.0 
 #
 #
-# $Id: Makefile.ConfigSample 775 2008-07-28 16:14:45Z n-ando $
+# $Id$
 #
 CXXFLAGS = `rtm-config --cflags`
 LDFLAGS  = `rtm-config --libs`

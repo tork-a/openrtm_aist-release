@@ -12,7 +12,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: DataFlowComponentBase.cpp 1339 2009-05-18 05:59:27Z n-ando $
+ * $Id$
  *
  */
 

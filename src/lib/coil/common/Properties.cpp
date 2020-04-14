@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: Properties.cpp 2584 2014-10-21 03:58:24Z kawauchi $
+ * $Id$
  *
  */
 

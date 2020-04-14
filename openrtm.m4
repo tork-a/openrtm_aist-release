@@ -13,7 +13,7 @@
 #         Advanced Industrial Science and Technology (AIST), Japan
 #     All rights reserved.
 #
-# $Id: openrtm.m4 1767 2010-01-24 06:06:27Z n-ando $
+# $Id$
 #
 
 dnl ----------------------------------------------------------------------

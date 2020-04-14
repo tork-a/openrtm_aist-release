@@ -14,7 +14,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: BufferBase.h 1704 2010-01-20 02:30:54Z fsi-katami $
+ * $Id$
  */
 
 #ifndef RTC_BUFFERBASE_H
