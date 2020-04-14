@@ -15,7 +15,7 @@
 #  --consumer-idl=MyService.idl 
 #
 #
-# $Id: Makefile.MyServiceConsumer 775 2008-07-28 16:14:45Z n-ando $
+# $Id$
 #
 CXXFLAGS = `rtm-config --cflags`
 LDFLAGS  = `rtm-config --libs`

@@ -13,7 +13,7 @@
 #          Advanced Industrial Science and Technology (AIST), Japan
 #      All rights reserved.
 # 
-#  $Id: cxx_gen.py 2099 2011-05-21 07:03:11Z n-ando $
+#  $Id$
 # 
 
 import re

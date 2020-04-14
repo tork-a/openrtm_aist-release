@@ -13,7 +13,7 @@
 #          Advanced Industrial Science and Technology (AIST), Japan
 #      All rights reserved.
 # 
-#  $Id: python_gen.py 2238 2011-10-25 09:32:34Z kurihara $
+#  $Id$
 # 
 
 import re

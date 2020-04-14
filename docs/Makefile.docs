@@ -2,7 +2,7 @@
 ##------------------------------------------------------------
 ## Makefile.doc for OpenRTM-aist documents.
 ##
-## $Id: Makefile.docs 2121 2011-05-23 16:52:39Z n-ando $
+## $Id$
 ##------------------------------------------------------------
 
 all: ClassReference ClassReference-en IDLReference IDLReference-en

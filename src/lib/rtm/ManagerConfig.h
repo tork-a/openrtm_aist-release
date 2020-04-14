@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: ManagerConfig.h 2102 2011-05-22 13:56:17Z n-ando $
+ * $Id$
  *
  */
 

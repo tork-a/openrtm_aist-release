@@ -12,7 +12,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: PortProfileHelper.cpp 1420 2009-07-01 02:38:52Z hakuta $
+ * $Id$
  *
  */
 

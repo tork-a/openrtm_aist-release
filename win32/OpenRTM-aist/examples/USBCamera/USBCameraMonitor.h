@@ -4,7 +4,7 @@
  * @brief 'hellow
  * @date  $Date: 2007-07-20 20:33:32 $
  *
- * $Id: USBCameraMonitor.h 1812 2010-01-27 09:49:23Z n-ando $
+ * $Id$
  */
 
 #ifndef USBCAMERAMONITOR_H

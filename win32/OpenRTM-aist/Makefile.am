@@ -2,7 +2,7 @@
 ##---------------------------------------------------------------------------
 ## Makefile.am for win32/OpenRTM-aist
 ##
-## $Id: Makefile.am 2723 2016-05-24 02:13:45Z kawauchi $
+## $Id$
 ##---------------------------------------------------------------------------
 SUBDIRS = bin etc cmake build docs examples ext utils coil rtm installer .
 

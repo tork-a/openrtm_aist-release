@@ -10,7 +10,7 @@ dnl generate the file "configure", which tries to guess your system
 dnl configuration
 dnl
 dnl
-dnl $Id: configure.ac 2731 2016-05-24 09:33:49Z kawauchi $
+dnl $Id$
 dnl
 
 dnl ------------------------------------------------------------

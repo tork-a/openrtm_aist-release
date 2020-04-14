@@ -12,7 +12,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: RTCUtil.cpp 1034 2008-11-10 10:32:16Z kojima $
+ * $Id$
  *
  */
 

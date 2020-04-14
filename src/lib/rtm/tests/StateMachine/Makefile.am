@@ -5,7 +5,7 @@
 # @date   $Date: 2007/01/21 06:53:49 $
 # @author Noriaki Ando <n-ando@aist.go.jp>
 #
-# $Id: Makefile.am 1160 2009-01-26 06:12:01Z openrtm $
+# $Id$
 #
 #------------------------------------------------------------
 

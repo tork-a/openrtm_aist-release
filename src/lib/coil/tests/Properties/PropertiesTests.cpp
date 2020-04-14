@@ -6,7 +6,7 @@
  * @author Noriaki Ando <n-ando@aist.go.jp>,
  *         Shinji Kurihara
  *
- *  $Id: PropertiesTests.cpp 1369 2009-05-22 08:11:36Z fsi-katami $
+ *  $Id$
  *
  */
 
