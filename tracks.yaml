@@ -132,7 +132,7 @@ tracks:
     latest_release: 22628ce
     name: upstream
     patches: melodic
-    release_inc: '5'
+    release_inc: '6'
     release_repo_url: null
     release_tag: 22628ce
     ros_distro: melodic
