@@ -1,4 +1,4 @@
-From 73a4cf55f68b49f601543ea3f150972f6bc6a218 Mon Sep 17 00:00:00 2001
+From 53ea18643af832d2fcac72902ef47fefa9c05481 Mon Sep 17 00:00:00 2001
 From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
 Date: Tue, 14 Apr 2020 23:28:28 +0900
 Subject: [PATCH 2/3] fix for idl file which is located on directory containing
@@ -9,7 +9,7 @@ Subject: [PATCH 2/3] fix for idl file which is located on directory containing
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/utils/rtc-template/rtc-template b/utils/rtc-template/rtc-template
-index f8b435e..7510e4d 100755
+index 37ed3b6..dbe37a8 100755
 --- a/utils/rtc-template/rtc-template
 +++ b/utils/rtc-template/rtc-template
 @@ -720,12 +720,12 @@ def PickupIDLFiles(dict):

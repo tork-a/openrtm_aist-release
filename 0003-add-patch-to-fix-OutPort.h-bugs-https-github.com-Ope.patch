@@ -1,4 +1,4 @@
-From bb305de59af4c72a137338ed9bc6a3afd34facad Mon Sep 17 00:00:00 2001
+From c5816ac1fdde953092ebf3fcf996233a924a1cd2 Mon Sep 17 00:00:00 2001
 From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
 Date: Tue, 14 Apr 2020 23:29:33 +0900
 Subject: [PATCH 3/3] add patch to fix OutPort.h bugs
@@ -6,22 +6,13 @@ Subject: [PATCH 3/3] add patch to fix OutPort.h bugs
  https://choreonoid.org/ja/manuals/latest/openrtm/install.html#openrtmplugin-patch-for-version112
 
 ---
- src/lib/rtm/OutPort.h | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+ src/lib/rtm/OutPort.h | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
 
 diff --git a/src/lib/rtm/OutPort.h b/src/lib/rtm/OutPort.h
-index a0dc58f..cb237c4 100644
+index b3e5ec9..eb1b5c0 100644
 --- a/src/lib/rtm/OutPort.h
 +++ b/src/lib/rtm/OutPort.h
-@@ -13,7 +13,7 @@
-  *         Advanced Industrial Science and Technology (AIST), Japan
-  *     All rights reserved.
-  *
-- * $Id: OutPort.h 2723 2016-05-24 02:13:45Z kawauchi $
-+ * $Id: OutPort.h 2755 2016-06-11 07:31:16Z n-ando $
-  *
-  */
- 
 @@ -138,8 +138,12 @@ namespace RTC
  #endif
          m_value(value), m_onWrite(0), m_onWriteConvert(0)
