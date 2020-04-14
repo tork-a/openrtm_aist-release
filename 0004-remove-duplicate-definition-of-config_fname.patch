@@ -1,0 +1,24 @@
+From be10672eb76179f39adaefc40358a4c2ea8a22fa Mon Sep 17 00:00:00 2001
+From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
+Date: Wed, 15 Apr 2020 00:13:03 +0900
+Subject: [PATCH 4/4] remove duplicate definition of config_fname
+
+---
+ src/lib/rtm/Manager.cpp | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/src/lib/rtm/Manager.cpp b/src/lib/rtm/Manager.cpp
+index 647bd1f..cc922af 100644
+--- a/src/lib/rtm/Manager.cpp
++++ b/src/lib/rtm/Manager.cpp
+@@ -1786,7 +1786,6 @@ std::vector<coil::Properties> Manager::getLoadableModules()
+     std::string name_conf(category + "." + inst_name + ".config_file");
+     coil::vstring config_fname;
+     
+-    coil::vstring config_fname;
+     coil::Properties type_prop, name_prop;
+     
+     // Load "category.instance_name.config_file"
+-- 
+2.17.1
+

@@ -1,7 +1,7 @@
-From 4f8503ab07abb297ff1e78d92e5869305d0f575f Mon Sep 17 00:00:00 2001
+From f88a18f3132b7767882b2a196dffa8b2151f123a Mon Sep 17 00:00:00 2001
 From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
 Date: Tue, 14 Apr 2020 23:29:33 +0900
-Subject: [PATCH 3/3] add patch to fix OutPort.h bugs
+Subject: [PATCH 3/4] add patch to fix OutPort.h bugs
  https://github.com/OpenRTM/OpenRTM-aist/commit/0cf33b816367c26d2698d01345b93a3d45b76a98,
  https://choreonoid.org/ja/manuals/latest/openrtm/install.html#openrtmplugin-patch-for-version112
 
