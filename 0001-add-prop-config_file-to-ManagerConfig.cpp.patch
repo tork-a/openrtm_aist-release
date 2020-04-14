@@ -4,22 +4,9 @@ Date: Tue, 14 Apr 2020 23:28:10 +0900
 Subject: [PATCH 1/4] add prop["config_file"] to ManagerConfig.cpp
 
 ---
- src/lib/rtm/Manager.cpp       | 1 +
  src/lib/rtm/ManagerConfig.cpp | 1 +
- 2 files changed, 2 insertions(+)
+ 1 files changed, 1 insertions(+)
 
-diff --git a/src/lib/rtm/Manager.cpp b/src/lib/rtm/Manager.cpp
-index cc922af..647bd1f 100644
---- a/src/lib/rtm/Manager.cpp
-+++ b/src/lib/rtm/Manager.cpp
-@@ -1786,6 +1786,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
-     std::string name_conf(category + "." + inst_name + ".config_file");
-     coil::vstring config_fname;
-     
-+    coil::vstring config_fname;
-     coil::Properties type_prop, name_prop;
-     
-     // Load "category.instance_name.config_file"
 diff --git a/src/lib/rtm/ManagerConfig.cpp b/src/lib/rtm/ManagerConfig.cpp
 index bbafe0a..c73cf0f 100644
 --- a/src/lib/rtm/ManagerConfig.cpp
