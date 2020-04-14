@@ -127,13 +127,14 @@ tracks:
     - git-bloom-generate -y rosrpm --prefix release/:{ros_distro} :{ros_distro} -i
       :{release_inc}
     devel_branch: null
+    latest_release: svn/RELEASE_1_1_2
     last_version: 1.1.2
     name: upstream
     patches: melodic
     release_inc: '3'
     release_repo_url: null
-    release_tag: null
+    release_tag: svn/RELEASE_1_1_2
     ros_distro: melodic
-    vcs_type: svn
-    vcs_uri: http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_2/OpenRTM-aist/
+    vcs_type: git
+    vcs_uri: https://github.com/OpenRTM/OpenRTM-aist.git
     version: 1.1.2
