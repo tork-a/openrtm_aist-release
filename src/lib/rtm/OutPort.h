@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: OutPort.h 2723 2016-05-24 02:13:45Z kawauchi $
+ * $Id$
  *
  */
 

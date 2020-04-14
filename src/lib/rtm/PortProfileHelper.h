@@ -12,7 +12,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: PortProfileHelper.h 1774 2010-01-25 01:20:14Z fsi-katami $
+ * $Id$
  *
  */
 

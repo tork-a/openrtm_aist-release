@@ -12,7 +12,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: CORBA_SeqUtil.h 2404 2014-02-06 02:15:22Z n-ando $
+ * $Id$
  *
  */
 

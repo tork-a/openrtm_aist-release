@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: ECFactory.h 1569 2009-11-12 14:36:47Z n-ando $
+ * $Id$
  *
  */
 

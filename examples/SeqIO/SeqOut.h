@@ -4,7 +4,7 @@
  * @brief Sequence OutPort component
  * @date  $Date: 2008-02-29 04:54:56 $
  *
- * $Id: SeqOut.h 2044 2011-02-14 05:29:44Z fsi-katami $
+ * $Id$
  */
 
 #ifndef SEQOUT_H

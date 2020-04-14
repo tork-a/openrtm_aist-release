@@ -4,7 +4,7 @@
  * @brief  CorbaNaming test class
  * @date   $Date: 2008/04/29 09:54:28 $
  *
- * $Id: CorbaNamingTests.cpp 1971 2010-06-03 08:46:40Z n-ando $
+ * $Id$
  *
  */
 

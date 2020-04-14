@@ -12,7 +12,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: ExecutionContextBase.h 1727 2010-01-21 01:50:30Z fsi-katami $
+ * $Id$
  *
  */
 

@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: InPortConsumer.h 2146 2011-05-27 09:56:11Z n-ando $
+ * $Id$
  *
  */
 

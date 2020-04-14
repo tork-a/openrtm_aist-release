@@ -5,7 +5,7 @@
  * @date   $Date: 2008/04/04 12:06:09 $
  * @author Noriaki Ando <n-ando@aist.go.jp>
  *
- * $Id: CorbaPortTests.cpp 1971 2010-06-03 08:46:40Z n-ando $
+ * $Id$
  *
  */
 

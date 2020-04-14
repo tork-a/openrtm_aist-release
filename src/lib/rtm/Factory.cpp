@@ -13,7 +13,7 @@
  *         Advanced Industrial Science and Technology (AIST), Japan
  *     All rights reserved.
  *
- * $Id: Factory.cpp 1407 2009-06-25 05:05:18Z hakuta $
+ * $Id$
  *
  */
 

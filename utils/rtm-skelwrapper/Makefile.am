@@ -2,7 +2,7 @@
 ##---------------------------------------------------------------------------
 ## Makefile.am for rtm-skelwrapper: rtm skeleton/stub wrapper generator
 ##
-## $Id: Makefile.am 2085 2011-05-07 01:06:21Z n-ando $
+## $Id$
 ##---------------------------------------------------------------------------
 
 AUTOMAKE_OPTIONS = 1.4

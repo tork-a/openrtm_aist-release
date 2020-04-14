@@ -5,7 +5,7 @@
  * @date   $Date: 2008/04/11 13:19:07 $
  * @author Noriaki Ando <n-ando@aist.go.jp>
  *
- * $Id: PeriodicExecutionContextTests.cpp 2015 2010-12-29 11:33:33Z n-ando $
+ * $Id$
  *
  */
 
