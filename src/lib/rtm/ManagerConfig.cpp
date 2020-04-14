@@ -118,6 +118,7 @@ namespace RTC
 
     // Properties from arguments are marged finally
     prop << m_argprop;
+    prop["config_file"] = m_configFile;
   }
   
   /*!
