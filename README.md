@@ -1,3 +1,26 @@
+## openrtm_aist (noetic) - 1.1.2-2
+
+The packages in the `openrtm_aist` repository were released into the `noetic` distro by running `/usr/bin/bloom-release openrtm_aist -t noetic -r noetic` on `Thu, 07 Apr 2022 00:44:36 -0000`
+
+The `openrtm_aist` package was released.
+
+Version of package(s) in repository `openrtm_aist`:
+
+- upstream repository: https://github.com/OpenRTM/OpenRTM-aist.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `1.1.2-1`
+- new version: `1.1.2-2`
+
+Versions of tools used:
+
+- bloom version: `0.10.7`
+- catkin_pkg version: `0.4.24`
+- rosdep version: `0.21.0`
+- rosdistro version: `0.8.3`
+- vcstools version: `0.1.42`
+
+
 ## openrtm_aist (noetic) - 1.1.2-1
 
 The packages in the `openrtm_aist` repository were released into the `noetic` distro by running `/usr/bin/bloom-release openrtm_aist -t noetic -r noetic` on `Thu, 07 Apr 2022 00:38:33 -0000`
