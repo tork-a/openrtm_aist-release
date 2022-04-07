@@ -1,0 +1,25 @@
+From 2d3a5e6febed24c999ba1483e5b2bb9ccfdd5f59 Mon Sep 17 00:00:00 2001
+From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
+Date: Thu, 7 Apr 2022 09:42:52 +0900
+Subject: [PATCH] use python-dev (python2-dev) for focal
+
+---
+ package.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/package.xml b/package.xml
+index 9727df6..36453e3 100644
+--- a/package.xml
++++ b/package.xml
+@@ -25,7 +25,7 @@
+   <build_depend>uuid</build_depend>
+   <build_depend>omniorb</build_depend>
+   <build_depend>doxygen</build_depend>
+-  <build_depend>python</build_depend>
++  <build_depend>python-dev</build_depend>
+ 
+   <run_depend>catkin</run_depend>
+   <run_depend>uuid</run_depend>
+-- 
+2.17.1
+
