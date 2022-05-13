@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- python -*-
 #
 #  @file cxx_svc_impl.py
