@@ -1,8 +1,8 @@
-From 772b8043fa51fb85285c386f1a7a44d1baffa350 Mon Sep 17 00:00:00 2001
+From bd2f9596b914bb6d5a8bfdd6f392ca80ae303beb Mon Sep 17 00:00:00 2001
 From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
 Date: Fri, 13 May 2022 09:20:05 +0000
-Subject: [PATCH 2/2] noetic: explictly set python2 for shebang, find . -iname
- '*.py' -exec sed -i 's@^\(#!/usr/bin/env\)\s*python@\1 python2@'  {} \;
+Subject: [PATCH 2/3] noetic: explictly set python2 for shebang, find . -iname
+ '*.py' -exec sed -i 's@^\(#!/usr/bin/env\)\s*python@\1 python2@' {} \;
 
 ---
  build/cmakeconfgen.py                                           | 2 +-
@@ -57,7 +57,6 @@ Subject: [PATCH 2/2] noetic: explictly set python2 for shebang, find . -iname
  src/lib/doil/utils/omniidl_be/tests/unitTest/setuptest.py       | 2 +-
  src/lib/doil/utils/omniidl_be/tests/unitTest/yat.py             | 2 +-
  utils/rtc-link/RtcLink.py                                       | 2 +-
- utils/rtc-link/RtmAbout.py                                      | 2 +-
  utils/rtc-link/RtmCompData.py                                   | 2 +-
  utils/rtc-link/RtmDialog.py                                     | 2 +-
  utils/rtc-link/RtmDtdValidator.py                               | 2 +-
@@ -77,11 +76,7 @@ Subject: [PATCH 2/2] noetic: explictly set python2 for shebang, find . -iname
  utils/rtc-template/vcproj_gen.py                                | 2 +-
  utils/rtm-manager/NSHelper.py                                   | 2 +-
  utils/rtm-skelwrapper/skel_wrapper.py                           | 2 +-
- win32/OpenRTM-aist/installer/OpenCV-RTC/opencvrtcwxs.py         | 2 +-
- win32/OpenRTM-aist/installer/OpenCV2.1/opencvwxs.py             | 2 +-
- win32/OpenRTM-aist/installer/OpenRTP/openrtpwxs.py              | 2 +-
- win32/OpenRTM-aist/installer/omniORB/omniwxs.py                 | 2 +-
- 76 files changed, 76 insertions(+), 76 deletions(-)
+ 71 files changed, 71 insertions(+), 71 deletions(-)
 
 diff --git a/build/cmakeconfgen.py b/build/cmakeconfgen.py
 index 843f9d7..2b95ca0 100755
@@ -603,16 +598,6 @@ index 672d2ab..1366016 100644
  # -*- coding: utf-8 -*-
  #
  #  @file RtcLink.py
-diff --git a/utils/rtc-link/RtmAbout.py b/utils/rtc-link/RtmAbout.py
-index 991107e..3af2894 100644
---- a/utils/rtc-link/RtmAbout.py
-+++ b/utils/rtc-link/RtmAbout.py
-@@ -1,4 +1,4 @@
--#!/usr/bin/env python
-+#!/usr/bin/env python2
- # -*- coding: utf-8 -*-
- #
- #  @file RtmAbout.py
 diff --git a/utils/rtc-link/RtmCompData.py b/utils/rtc-link/RtmCompData.py
 index 795ccd8..0e2577e 100644
 --- a/utils/rtc-link/RtmCompData.py
@@ -803,46 +788,6 @@ index ceddc05..73853c1 100644
  # -*- coding: utf-8 -*-
  #
  #  @file skel_wrapper.py
-diff --git a/win32/OpenRTM-aist/installer/OpenCV-RTC/opencvrtcwxs.py b/win32/OpenRTM-aist/installer/OpenCV-RTC/opencvrtcwxs.py
-index 93a2a56..85f3524 100644
---- a/win32/OpenRTM-aist/installer/OpenCV-RTC/opencvrtcwxs.py
-+++ b/win32/OpenRTM-aist/installer/OpenCV-RTC/opencvrtcwxs.py
-@@ -1,4 +1,4 @@
--#!/usr/bin/env python
-+#!/usr/bin/env python2
- #
- # @brief WiX wxs file generator for omniORB
- # @date $Date$
-diff --git a/win32/OpenRTM-aist/installer/OpenCV2.1/opencvwxs.py b/win32/OpenRTM-aist/installer/OpenCV2.1/opencvwxs.py
-index db41e20..365c5ca 100644
---- a/win32/OpenRTM-aist/installer/OpenCV2.1/opencvwxs.py
-+++ b/win32/OpenRTM-aist/installer/OpenCV2.1/opencvwxs.py
-@@ -1,4 +1,4 @@
--#!/usr/bin/env python
-+#!/usr/bin/env python2
- #
- # @brief WiX wxs file generator for omniORB
- # @date $Date$
-diff --git a/win32/OpenRTM-aist/installer/OpenRTP/openrtpwxs.py b/win32/OpenRTM-aist/installer/OpenRTP/openrtpwxs.py
-index c43a5f7..0f9617e 100644
---- a/win32/OpenRTM-aist/installer/OpenRTP/openrtpwxs.py
-+++ b/win32/OpenRTM-aist/installer/OpenRTP/openrtpwxs.py
-@@ -1,4 +1,4 @@
--#!/usr/bin/env python
-+#!/usr/bin/env python2
- #
- # @brief WiX wxs file generator for omniORB
- # @date $Date$
-diff --git a/win32/OpenRTM-aist/installer/omniORB/omniwxs.py b/win32/OpenRTM-aist/installer/omniORB/omniwxs.py
-index f172073..cd9243c 100644
---- a/win32/OpenRTM-aist/installer/omniORB/omniwxs.py
-+++ b/win32/OpenRTM-aist/installer/omniORB/omniwxs.py
-@@ -1,4 +1,4 @@
--#!/usr/bin/env python
-+#!/usr/bin/env python2
- #
- # @brief WiX wxs file generator for omniORB
- # @date $Date$
 -- 
 2.25.1
 

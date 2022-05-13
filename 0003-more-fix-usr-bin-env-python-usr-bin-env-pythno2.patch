@@ -1,0 +1,80 @@
+From c6342f15eafee2eec90bf4a59ad6408a50175203 Mon Sep 17 00:00:00 2001
+From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
+Date: Fri, 13 May 2022 11:49:50 +0000
+Subject: [PATCH 3/3] more fix /usr/bin/env python -> /usr/bin/env/pythno2
+
+---
+ utils/rtc-link/RtcLink.pyw            | 2 +-
+ utils/rtc-link/rtc-link               | 2 +-
+ utils/rtc-template/python_gen.py      | 2 +-
+ utils/rtc-template/rtc-template       | 2 +-
+ utils/rtm-manager/rtm-manager         | 2 +-
+ utils/rtm-skelwrapper/rtm-skelwrapper | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/utils/rtc-link/RtcLink.pyw b/utils/rtc-link/RtcLink.pyw
+index 3d544ad..60b8675 100644
+--- a/utils/rtc-link/RtcLink.pyw
++++ b/utils/rtc-link/RtcLink.pyw
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ # -*- coding: utf-8 -*-
+ #
+ #  @file RtcLink.pyw
+diff --git a/utils/rtc-link/rtc-link b/utils/rtc-link/rtc-link
+index 84c141d..b2aee6f 100644
+--- a/utils/rtc-link/rtc-link
++++ b/utils/rtc-link/rtc-link
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ # -*- coding: utf-8 -*-
+ #
+ #  @file rtc-link
+diff --git a/utils/rtc-template/python_gen.py b/utils/rtc-template/python_gen.py
+index 806fca1..a67732e 100644
+--- a/utils/rtc-template/python_gen.py
++++ b/utils/rtc-template/python_gen.py
+@@ -120,7 +120,7 @@ bind_config = """
+ #------------------------------------------------------------
+ # Python component source code template
+ #------------------------------------------------------------
+-py_source = """#!/usr/bin/env python
++py_source = """#!/usr/bin/env python2
+ # -*- Python -*-
+ 
+ import sys
+diff --git a/utils/rtc-template/rtc-template b/utils/rtc-template/rtc-template
+index 37ed3b6..a164609 100755
+--- a/utils/rtc-template/rtc-template
++++ b/utils/rtc-template/rtc-template
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ # -*- python -*-
+ #
+ #  @file rtc-template
+diff --git a/utils/rtm-manager/rtm-manager b/utils/rtm-manager/rtm-manager
+index 5eb3281..c9978b5 100755
+--- a/utils/rtm-manager/rtm-manager
++++ b/utils/rtm-manager/rtm-manager
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ from Tkinter import *
+ from tkFont import *
+diff --git a/utils/rtm-skelwrapper/rtm-skelwrapper b/utils/rtm-skelwrapper/rtm-skelwrapper
+index daf0aca..02476f6 100755
+--- a/utils/rtm-skelwrapper/rtm-skelwrapper
++++ b/utils/rtm-skelwrapper/rtm-skelwrapper
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ # -*- python -*-
+ # -*- coding: utf-8 -*-
+ #
+-- 
+2.25.1
+
