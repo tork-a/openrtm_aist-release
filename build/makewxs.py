@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 #
 # @brief WiX wxsd file generator
 # @date $Date: 2008-02-26 13:58:13 $
