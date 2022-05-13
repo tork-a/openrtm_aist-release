@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 #
 # @file setuptest.py
 # @brief CppUnit test environment setup script

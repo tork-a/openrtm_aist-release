@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 #
 # @brief VCXProject file generator
 # @date $Date: 2008-02-29 04:52:14 $

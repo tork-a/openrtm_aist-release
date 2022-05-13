@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 """ezt.py -- easy templating
 
 ezt templates are very similar to standard HTML files.  But additionally
