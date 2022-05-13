@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 #
 # @brief Visual Studio Project file generator
 # @date $Date: 2007-07-20 15:36:59 $
