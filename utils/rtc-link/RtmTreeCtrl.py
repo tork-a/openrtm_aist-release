@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 #
 #  @file RtmTreeCtrl.py
 #  @brief rtc-link name tree management class
