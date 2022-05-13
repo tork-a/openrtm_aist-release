@@ -1,7 +1,7 @@
-From 2d3a5e6febed24c999ba1483e5b2bb9ccfdd5f59 Mon Sep 17 00:00:00 2001
+From 72e65e2ad646121fbd913311cb4fb4246eff7425 Mon Sep 17 00:00:00 2001
 From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
 Date: Thu, 7 Apr 2022 09:42:52 +0900
-Subject: [PATCH] use python-dev (python2-dev) for focal
+Subject: [PATCH 1/2] use python-dev (python2-dev) for focal
 
 ---
  package.xml | 2 +-
@@ -21,5 +21,5 @@ index 9727df6..36453e3 100644
    <run_depend>catkin</run_depend>
    <run_depend>uuid</run_depend>
 -- 
-2.17.1
+2.25.1
 
