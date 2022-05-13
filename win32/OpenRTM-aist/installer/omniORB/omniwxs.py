@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 #
 # @brief WiX wxs file generator for omniORB
 # @date $Date$

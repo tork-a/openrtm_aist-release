@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 #
 # @brief Visual Studio solution generator
 # @date $Date: 2008-03-06 06:46:37 $

@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 
 r"""UUID objects (universally unique identifiers) according to RFC 4122.
 

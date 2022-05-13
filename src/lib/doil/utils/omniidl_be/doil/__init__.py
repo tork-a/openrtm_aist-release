@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- python -*-
 #
 #  @file omniidl_be/doil/__init__.py
