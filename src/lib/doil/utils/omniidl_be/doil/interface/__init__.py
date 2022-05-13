@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- coding: shift_jis -*-
 # -*- python -*-
 # @file omniidl_be/doil/servant/__init__.py
