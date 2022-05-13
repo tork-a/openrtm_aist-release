@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- python -*-
 #
 #  @file cxx_gen.py

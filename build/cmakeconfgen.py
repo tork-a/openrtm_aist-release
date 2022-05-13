@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 #
 # @brief CMake Config file generator
 # @date $Date$

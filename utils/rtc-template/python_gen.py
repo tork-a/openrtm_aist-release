@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- Python -*-
 #
 #  @file Py_src.py
@@ -120,7 +120,7 @@ bind_config = """
 #------------------------------------------------------------
 # Python component source code template
 #------------------------------------------------------------
-py_source = """#!/usr/bin/env python2
+py_source = """#!/usr/bin/env python
 # -*- Python -*-
 
 import sys
