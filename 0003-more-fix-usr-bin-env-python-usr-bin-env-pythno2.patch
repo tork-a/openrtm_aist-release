@@ -1,7 +1,7 @@
-From c6342f15eafee2eec90bf4a59ad6408a50175203 Mon Sep 17 00:00:00 2001
+From 15bd142a9366a53f86f74428123e575ad8c41dd7 Mon Sep 17 00:00:00 2001
 From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
 Date: Fri, 13 May 2022 11:49:50 +0000
-Subject: [PATCH 3/3] more fix /usr/bin/env python -> /usr/bin/env/pythno2
+Subject: [PATCH 3/7] more fix /usr/bin/env python -> /usr/bin/env/pythno2
 
 ---
  utils/rtc-link/RtcLink.pyw            | 2 +-

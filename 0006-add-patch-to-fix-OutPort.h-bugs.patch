@@ -1,0 +1,46 @@
+From bf2881872be6059f65aff99d2637d48b2f63ec92 Mon Sep 17 00:00:00 2001
+From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
+Date: Tue, 9 Apr 2024 22:50:15 +0900
+Subject: [PATCH 6/7] add patch to fix OutPort.h bugs 
+ https://github.com/OpenRTM/OpenRTM-aist/commit/0cf33b816367c26d2698d01345b93a3d45b76a98,
+ 
+ https://choreonoid.org/ja/manuals/latest/openrtm/install.html#openrtmplugin-patch-for-version112
+
+---
+ src/lib/rtm/OutPort.h | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
+
+diff --git a/src/lib/rtm/OutPort.h b/src/lib/rtm/OutPort.h
+index b3e5ec9..eb1b5c0 100644
+--- a/src/lib/rtm/OutPort.h
++++ b/src/lib/rtm/OutPort.h
+@@ -138,8 +138,12 @@ namespace RTC
+ #endif
+         m_value(value), m_onWrite(0), m_onWriteConvert(0)
+     {
+-      addProperty("dataport.data_value", m_value);
+-      m_propValueIndex = NVUtil::find_index(m_profile.properties, "dataport.data_value");
++      addProperty("dataport.data_value", CORBA::Short(0));
++      {
++	Guard guard(m_profile_mutex);
++	m_propValueIndex = NVUtil::find_index(m_profile.properties,
++					      "dataport.data_value");
++      }
+     }
+     
+     /*!
+@@ -211,7 +215,10 @@ namespace RTC
+           (*m_onWrite)(value);
+           RTC_TRACE(("OnWrite called"));
+         }
+-      m_profile.properties[m_propValueIndex].value <<= value;
++      {
++	Guard guard(m_profile_mutex);
++	m_profile.properties[m_propValueIndex].value <<= value;
++      }
+ 
+       bool result(true);
+       std::vector<const char *> disconnect_ids;
+-- 
+2.25.1
+

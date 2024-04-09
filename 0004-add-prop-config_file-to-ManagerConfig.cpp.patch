@@ -1,0 +1,37 @@
+From c4513476c93b73d4bf4800e5e37d85c5a846e0d6 Mon Sep 17 00:00:00 2001
+From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
+Date: Tue, 9 Apr 2024 22:49:29 +0900
+Subject: [PATCH 4/7] add prop[config_file] to ManagerConfig.cpp
+
+---
+ src/lib/rtm/Manager.cpp       | 1 +
+ src/lib/rtm/ManagerConfig.cpp | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/src/lib/rtm/Manager.cpp b/src/lib/rtm/Manager.cpp
+index cc922af..647bd1f 100644
+--- a/src/lib/rtm/Manager.cpp
++++ b/src/lib/rtm/Manager.cpp
+@@ -1786,6 +1786,7 @@ std::vector<coil::Properties> Manager::getLoadableModules()
+     std::string name_conf(category + "." + inst_name + ".config_file");
+     coil::vstring config_fname;
+     
++    coil::vstring config_fname;
+     coil::Properties type_prop, name_prop;
+     
+     // Load "category.instance_name.config_file"
+diff --git a/src/lib/rtm/ManagerConfig.cpp b/src/lib/rtm/ManagerConfig.cpp
+index bbafe0a..c73cf0f 100644
+--- a/src/lib/rtm/ManagerConfig.cpp
++++ b/src/lib/rtm/ManagerConfig.cpp
+@@ -118,6 +118,7 @@ namespace RTC
+ 
+     // Properties from arguments are marged finally
+     prop << m_argprop;
++    prop["config_file"] = m_configFile;
+   }
+   
+   /*!
+-- 
+2.25.1
+

@@ -1,0 +1,32 @@
+From 79b0d8fb60c1414ffe91d0215f3639237defe898 Mon Sep 17 00:00:00 2001
+From: Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>
+Date: Tue, 9 Apr 2024 22:49:51 +0900
+Subject: [PATCH 5/7] fix for idl file which is located on directory containing
+ period
+
+---
+ utils/rtc-template/rtc-template | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/utils/rtc-template/rtc-template b/utils/rtc-template/rtc-template
+index a164609..c8b6b3c 100755
+--- a/utils/rtc-template/rtc-template
++++ b/utils/rtc-template/rtc-template
+@@ -720,12 +720,12 @@ def PickupIDLFiles(dict):
+ 	for f in svcidls.keys():
+ 		idl = {}
+ 		idl["idl_fname"] = f
+-		idl["idl_basename"] = f.split(".")[0]
++		idl["idl_basename"] = os.path.splitext(f)[0]
+ 		dict["service_idl"].append(idl)
+ 	for f in cnsidls.keys():
+ 		idl = {}
+ 		idl["idl_fname"] = f
+-		idl["idl_basename"] = f.split(".")[0]
++		idl["idl_basename"] = os.path.splitext(f)[0]
+ 		dict["consumer_idl"].append(idl)
+ 	return
+ 
+-- 
+2.25.1
+
